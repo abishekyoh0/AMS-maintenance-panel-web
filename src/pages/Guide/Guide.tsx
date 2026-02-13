@@ -1,24 +1,22 @@
-import guide from "../../assets/sidebar/guide.png"
-import StatCard from "../../components/Guide/statcard"
-import { COLORS, FONTSIZE, WEIGHT } from "../../constent/uiconstent"
-import work from "../../assets/guide/work.png"
-import persons from "../../assets/guide/persons.png"
-import tick from "../../assets/guide/tick.png"
-import star from "../../assets/guide/star.png"
-import SearchFilter from "../../components/Guide/searchfilter"
-import ProviderCard from "../../components/Guide/providercard"
+import guide from "../../assets/sidebar/guide.png";
+import StatCard from "../../components/Guide/statcard";
+import { COLORS, FONTSIZE, WEIGHT } from "../../constent/uiconstent";
+import work from "../../assets/guide/work.png";
+import persons from "../../assets/guide/persons.png";
+import tick from "../../assets/guide/tick.png";
+import star from "../../assets/guide/star.png";
+import SearchFilter from "../../components/Guide/searchfilter";
+import ProviderCard from "../../components/Guide/providercard";
 import { useState } from "react";
-import plumbing from "../../assets/guide/plumb.png"
-import electrical from "../../assets/guide/electrical.png"
-import person from "../../assets/guide/boy.png"
-import paint from "../../assets/guide/paint.png"
-import painting from "../../assets/guide/paintboy.png"
-import hvac from "../../assets/guide/hvac.png"
-import clean from "../../assets/guide/clean.png"
-import car from "../../assets/guide/car.png"
-import lock from "../../assets/guide/lock.png"
-
-
+import plumbing from "../../assets/guide/plumb.png";
+import electrical from "../../assets/guide/electrical.png";
+import person from "../../assets/guide/boy.png";
+import paint from "../../assets/guide/paint.png";
+import painting from "../../assets/guide/paintboy.png";
+import hvac from "../../assets/guide/hvac.png";
+import clean from "../../assets/guide/clean.png";
+import car from "../../assets/guide/car.png";
+import lock from "../../assets/guide/lock.png";
 
 const providers = [
   {
@@ -96,7 +94,7 @@ const providers = [
     completed: 210,
     status: "off-job",
   },
-    {
+  {
     name: "James Wilson",
     service: "Cleaning",
     serviceId: "ELC-001",
@@ -111,7 +109,7 @@ const providers = [
     completed: 456,
     status: "on-job",
   },
-    {
+  {
     name: "James Wilson",
     service: "Carpentry",
     serviceId: "ELC-001",
@@ -126,7 +124,7 @@ const providers = [
     completed: 456,
     status: "on-job",
   },
-    {
+  {
     name: "James Wilson",
     service: "Locksmith",
     serviceId: "ELC-001",
@@ -142,9 +140,6 @@ const providers = [
     status: "on-job",
   },
 ] as const;
- 
-
-
 
 export default function Guide() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -163,15 +158,13 @@ export default function Guide() {
       provider.serviceId.toLowerCase().includes(searchTerm.toLowerCase());
 
     const matchesCategory =
-      category === "All Services" ||
-      provider.service === category;
+      category === "All Services" || provider.service === category;
 
     return matchesSearch && matchesCategory;
   });
 
   return (
     <div>
-
       <h1
         className={`flex items-center gap-2 text-white text-2xl font-bold mb-4 ${FONTSIZE[36]}`}
         style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}
@@ -223,26 +216,18 @@ export default function Guide() {
 
       <div className="mb-6">
         <SearchFilter onFilterChange={handleFilterChange} />
-
       </div>
-     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-7xl mx-auto">
-
-
-  {filteredProviders.length > 0 ? (
-    filteredProviders.map((provider, index) => (
-      <ProviderCard key={index} {...provider} />
-    ))
-  ) : (
-    <p className="text-center text-gray-400 col-span-full">
-      No providers found.
-    </p>
-  )}
-
-</div>
-
-      
-
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-7xl mx-auto">
+        {filteredProviders.length > 0 ? (
+          filteredProviders.map((provider, index) => (
+            <ProviderCard key={index} {...provider} />
+          ))
+        ) : (
+          <p className="text-center text-gray-400 col-span-full">
+            No providers found.
+          </p>
+        )}
+      </div>
     </div>
   );
 }
-
