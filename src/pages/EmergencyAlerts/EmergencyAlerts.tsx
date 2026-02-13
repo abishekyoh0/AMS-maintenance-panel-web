@@ -63,8 +63,7 @@ const ACTIVE_ALERTS = [
     assigned: "Team-2",
     description:
       "Water leakage detected on Floor 3. Maintenance team is working on it. Please avoid the area.",
-    note:
-      "This leak requires maintenance team action. Please coordinate with security and admin.",
+    note: "This leak requires maintenance team action. Please coordinate with security and admin.",
   },
 ];
 
@@ -142,7 +141,10 @@ const statusStyle = (status: string) => {
 
 const InfoCard = ({ icon, label, value }: any) => (
   <div className="bg-[#FFFFFF0D] p-3 rounded-lg">
-    <p className={`mb-2 ${FONTSIZE[12]}`} style={{ color: COLORS.secoundy_gray }}>
+    <p
+      className={`mb-2 ${FONTSIZE[12]}`}
+      style={{ color: COLORS.secoundy_gray }}
+    >
       {label}
     </p>
     <p className={`flex gap-2 ${FONTSIZE[16]} ${FONTWEIGHT[700]}`}>
@@ -155,19 +157,26 @@ const EmergencyDashboard: React.FC = () => {
   return (
     <div className="space-y-6" style={{ color: COLORS.primary_white }}>
       <div>
-        <h1 className={`flex items-center gap-2 ${FONTSIZE[36]} ${FONTWEIGHT[700]}`}>
+        <h1
+          className={`flex items-center gap-2 ${FONTSIZE[36]} ${FONTWEIGHT[700]}`}
+        >
           <img src={Alert} /> Emergency Alerts
         </h1>
-        <p className={`${FONTSIZE[16]}`} style={{ color: COLORS.secoundy_gray }}>
+        <p
+          className={`${FONTSIZE[16]}`}
+          style={{ color: COLORS.secoundy_gray }}
+        >
           View emergency alerts requiring maintenance attention
         </p>
       </div>
 
       <div className="grid sm:grid-cols-3 gap-4">
         {DASHBOARD_STATS.map((card, i) => (
-          <div key={i}
+          <div
+            key={i}
             className={`rounded-xl p-5 bg-linear-to-r ${card.bg}`}
-            style={{ border: `1px solid ${card.border}` }}>
+            style={{ border: `1px solid ${card.border}` }}
+          >
             <img src={card.icon} />
             <p className={`${FONTSIZE[30]} ${FONTWEIGHT[700]} my-2`}>
               {card.count}
@@ -180,9 +189,10 @@ const EmergencyDashboard: React.FC = () => {
       </div>
 
       {ACTIVE_ALERTS.map((alert, i) => (
-        <div key={i}
-          className="rounded-2xl border border-[#FF64674D] bg-linear-to-r from-[#FB2C361A] to-[#FF69001A] p-4 space-y-5">
-
+        <div
+          key={i}
+          className="rounded-2xl border border-[#FF64674D] bg-linear-to-r from-[#FB2C361A] to-[#FF69001A] p-4 space-y-5"
+        >
           <div className="flex justify-between flex-wrap">
             <div className="flex gap-3 items-center">
               <img src={alert.icon} />
@@ -196,7 +206,13 @@ const EmergencyDashboard: React.FC = () => {
               </div>
             </div>
 
-            <div className={`flex items-center px-3 rounded-full ${FONTSIZE[14]} ${FONTWEIGHT[700]}`} style={{ backgroundColor: COLORS.orange + "33", color: COLORS.orange }}>
+            <div
+              className={`flex items-center px-3 rounded-full ${FONTSIZE[14]} ${FONTWEIGHT[700]}`}
+              style={{
+                backgroundColor: COLORS.orange + "33",
+                color: COLORS.orange,
+              }}
+            >
               {alert.priority} Priority
             </div>
           </div>
@@ -207,20 +223,31 @@ const EmergencyDashboard: React.FC = () => {
             <InfoCard icon={worker} label="Assigned" value={alert.assigned} />
           </div>
 
-          <div className={`bg-[#FFFFFF0D] p-3 rounded-lg ${FONTSIZE[16]} ${FONTWEIGHT[400]}`}>
-            <p className={`mb-2 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{color: COLORS.secoundy_gray}}>Alert Details:</p>
+          <div
+            className={`bg-[#FFFFFF0D] p-3 rounded-lg ${FONTSIZE[16]} ${FONTWEIGHT[400]}`}
+          >
+            <p
+              className={`mb-2 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
+              style={{ color: COLORS.secoundy_gray }}
+            >
+              Alert Details:
+            </p>
             {alert.description}
           </div>
 
-          <div className={`bg-[#F0B1001A] border border-[#FDC7004D] p-3 rounded-lg ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
-            style={{ color: COLORS.orange }}>
+          <div
+            className={`bg-[#F0B1001A] border border-[#FDC7004D] p-3 rounded-lg ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
+            style={{ color: COLORS.orange }}
+          >
             ⚠️ {alert.note}
           </div>
         </div>
       ))}
 
-      <div className="rounded-2xl p-5"
-        style={{ border: "1px solid #FFFFFF33", background: "#FFFFFF0D" }}>
+      <div
+        className="rounded-2xl p-5"
+        style={{ border: "1px solid #FFFFFF33", background: "#FFFFFF0D" }}
+      >
         <div className="flex gap-2 items-center mb-4">
           <img src={Note} className="w-5 h-5" />
           <h2 className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>
@@ -247,14 +274,21 @@ const EmergencyDashboard: React.FC = () => {
                 const s = statusStyle(item.status);
 
                 return (
-                  <tr key={index} className={FONTSIZE[14]} style={{ borderBottom: "1px solid #ffffff1a" }}>
+                  <tr
+                    key={index}
+                    className={FONTSIZE[14]}
+                    style={{ borderBottom: "1px solid #ffffff1a" }}
+                  >
                     <td className="py-3 flex items-center gap-3">
                       <img src={item.img} className="w-6 h-6" />
                       <div>
                         <p className={`${FONTSIZE[16]} ${FONTWEIGHT[700]}`}>
                           {item.type}
                         </p>
-                        <p className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{color: COLORS.secoundy_gray}}>
+                        <p
+                          className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
+                          style={{ color: COLORS.secoundy_gray }}
+                        >
                           {item.code}
                         </p>
                       </div>
@@ -267,20 +301,32 @@ const EmergencyDashboard: React.FC = () => {
                         {item.priority}
                       </span>
                     </td>
-                    <td className={`${FONTSIZE[14]} ${FONTWEIGHT[700]}`} style={{ color: COLORS.blue }}
-                    >{item.location}
+                    <td
+                      className={`${FONTSIZE[14]} ${FONTWEIGHT[700]}`}
+                      style={{ color: COLORS.blue }}
+                    >
+                      {item.location}
                     </td>
                     <td>
-                      <p className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{color: COLORS.primary_white}}>{item.date}</p>
-                      <p className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
-                       style={{ color: COLORS.grey }}>{item.time}</p>
+                      <p
+                        className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
+                        style={{ color: COLORS.primary_white }}
+                      >
+                        {item.date}
+                      </p>
+                      <p
+                        className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
+                        style={{ color: COLORS.grey }}
+                      >
+                        {item.time}
+                      </p>
                     </td>
-                    <td style={{ color: COLORS.smalltext }}>
-                      {item.assigned}
-                    </td>
+                    <td style={{ color: COLORS.smalltext }}>{item.assigned}</td>
                     <td>
-                      <span className={`px-3 py-2 rounded-2xl ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}
-                        style={{ background: s.bg, color: s.color }}>
+                      <span
+                        className={`px-3 py-2 rounded-2xl ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}
+                        style={{ background: s.bg, color: s.color }}
+                      >
                         {item.status}
                       </span>
                     </td>
@@ -306,8 +352,10 @@ const EmergencyDashboard: React.FC = () => {
                 <img src={g.icon} className="w-6 h-5 mb-2" />
                 {g.title}
               </h3>
-              <ul className={`list-disc list-inside ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
-                style={{ color: COLORS.secoundy_gray }}>
+              <ul
+                className={`list-disc list-inside ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
+                style={{ color: COLORS.secoundy_gray }}
+              >
                 {g.points.map((p, idx) => (
                   <li key={idx}>{p}</li>
                 ))}
