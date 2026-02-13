@@ -15,7 +15,7 @@ export const Mainlayout = () => {
           <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#8E51FF33] rounded-full blur-[100px]" />
         </div>
         <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
-        <div className=" flex-1 overflow-y-auto overflow-x-hidden p-4 sm:p-6 text-white h-screen">
+        <div className=" flex-1 overflow-y-auto overflow-x-hidden p-4 sm:p-6 text-white">
           <Outlet />
         </div>
       </div>

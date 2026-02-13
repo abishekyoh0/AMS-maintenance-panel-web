@@ -6,11 +6,15 @@ import Water from "../../assets/emergencyAlerts/water.png";
 import Locatio from "../../assets/emergencyAlerts/location.png";
 import Clock from "../../assets/emergencyAlerts/clock.png";
 import worker from "../../assets/emergencyAlerts/worker.png";
+import Iicon from "../../assets/emergencyAlerts/iicon.png";
+import Wire from "../../assets/emergencyAlerts/wire.png";
+import Thunder from "../../assets/emergencyAlerts/thunder.png";
+import Note from "../../assets/emergencyAlerts/note.png";
 import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
 
 type AlertHistory = {
   img?: string;
-  type: string; 
+  type: string;
   code?: string;
   priority: "Low" | "Medium" | "High";
   location: string;
@@ -22,7 +26,7 @@ type AlertHistory = {
 
 export const ALERT_HISTORY: AlertHistory[] = [
   {
-    img: "",
+    img: Water,
     type: "Water Leakage",
     code: "#EA003",
     priority: "Medium",
@@ -33,7 +37,7 @@ export const ALERT_HISTORY: AlertHistory[] = [
     status: "Active",
   },
   {
-    img: "",
+    img: Wire,
     type: "Power Failure",
     code: "#EA004",
     priority: "Medium",
@@ -44,7 +48,7 @@ export const ALERT_HISTORY: AlertHistory[] = [
     status: "Resolved",
   },
   {
-    img: "",
+    img: Alert,
     type: "Elevator Emergency",
     code: "#EA005",
     priority: "High",
@@ -87,7 +91,7 @@ const EmergencyDashboard: React.FC = () => {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-4">
+      <div className="grid sm:grid-cols-3 gap-4">
         <div className="rounded-xl p-5 bg-linear-to-r from-[#FB2C3633] to-[#FF690033] border border-[#FF64674D]">
           <img src={Alert} alt="" />
           <p className={`my-2 ${FONTSIZE[30]} ${FONTWEIGHT[700]}`}>1</p>
@@ -157,13 +161,16 @@ const EmergencyDashboard: React.FC = () => {
 
       <div className="rounded-2xl p-5"
         style={{ border: "1px solid #FFFFFF33", background: "#FFFFFF0D" }}>
-        <h2 className={`mb-1 ${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>
-          📄 Emergency Alert History
-        </h2>
+        <div className="flex items-center gap-3">
+          <img src={Note} alt="" className="w-5 h-5" />
+          <h2 className={`mb-1 ${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>
+            Emergency Alert History
+          </h2>
+        </div>
         <p className={`mb-1 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>All emergency alerts related to maintenance</p>
 
-        <div className="overflow-auto">
-          <table className="w-full">
+        <div className="w-full overflow-x-auto">
+          <table className="min-w-[950px] w-full">
             <thead className={`${FONTSIZE[12]} ${FONTWEIGHT[700]}`}
               style={{ color: COLORS.secoundy_gray, borderBottom: "1px solid #ffffff1a" }}>
               <tr className="uppercase">
@@ -176,26 +183,37 @@ const EmergencyDashboard: React.FC = () => {
               </tr>
             </thead>
 
-            <tbody className="">
+            <tbody className="space-y-4">
               {ALERT_HISTORY.map((item, index) => {
                 const p = priorityStyle(item.priority);
                 const s = statusStyle(item.status);
 
                 return (
                   <tr key={index} className={FONTSIZE[14]} style={{ borderBottom: "1px solid #ffffff1a" }}>
-                    <td className="py-3">{item.type} <br /> {item.code}</td>
+                    <td className="py-3 flex items-center gap-4">
+                      <div>
+                        <img src={item.img} alt=""  className="w-6 h-6"/>
+                      </div>
+                      <div>
+                        <p className={`${FONTSIZE[16]} ${FONTWEIGHT[700]}`}>{item.type}</p> 
+                        <p className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{color: COLORS.secoundy_gray}}>{item.code}</p>
+                      </div>
+                      </td>
                     <td>
-                      <span className="px-3 py-1 rounded-2xl"
-                        style={{ background: p.bg, color: p.color, ...FONTWEIGHT[500] }}>
+                      <span className={`px-3 py-2 rounded-2xl ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}
+                        style={{ background: p.bg, color: p.color }}>
                         {item.priority}
                       </span>
                     </td>
-                    <td style={{ color: COLORS.blue }}>{item.location}</td>
-                    <td style={{ color: COLORS.grey }}>{item.date} <br /> {item.time} </td>
+                    <td className={`${FONTSIZE[14]} ${FONTWEIGHT[700]}`} style={{ color: COLORS.blue }}>{item.location}</td>
+                    <td style={{ color: COLORS.grey }}>
+                        <p className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{color: COLORS.primary_white}}>{item.date}</p>
+                        <p className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`}>{item.time}</p>
+                       </td>
                     <td style={{ color: COLORS.smalltext }}>{item.assigned}</td>
                     <td>
-                      <span className="px-3 py-1 rounded-2xl"
-                        style={{ background: s.bg, color: s.color, ...FONTWEIGHT[500] }}>
+                      <span className={`px-3 py-2 rounded-2xl ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}
+                        style={{ background: s.bg, color: s.color}}>
                         {item.status}
                       </span>
                     </td>
@@ -207,56 +225,60 @@ const EmergencyDashboard: React.FC = () => {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-blue-500/20 bg-linear-to-r from-[#0b1220] to-[#0a0f2a] p-5">
-        <h2 className="text-lg font-semibold mb-4">
-          🛠 Maintenance Emergency Response Guidelines
-        </h2>
+      <div className="rounded-2xl border border-[#00D3F24D] bg-linear-to-r from-[#00B8DB1A] to-[#2B7FFF1A] p-5 mb-5">
+        <div className="flex gap-2 items-center mb-4">
+          <img src={Iicon} alt="" className="w-1 h-5" />
+          <h2 className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>
+            Maintenance Emergency Response Guidelines
+          </h2>
+        </div>
 
         <div className="grid md:grid-cols-2 gap-4 text-sm">
-
-          <div className="bg-[#11162b] p-4 rounded-xl">
-            <h3 className="font-semibold mb-2">⚡ Power Failure</h3>
-            <ul className="text-gray-400 space-y-1">
-              <li>• Stay calm</li>
-              <li>• Use flashlight</li>
-              <li>• Avoid elevators</li>
-              <li>• Wait for official updates</li>
+          <div className="bg-[#FFFFFF0D] p-4 rounded-xl">
+            <h3 className={`mb-2 ${FONTSIZE[16]} ${FONTWEIGHT[700]}`}>
+              <img src={Wire} alt="" className="w-5 h-5 mb-3" /> Power Failure</h3>
+            <ul className={`space-y-1 list-disc list-inside ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>
+              <li>Stay calm</li>
+              <li>Use flashlight</li>
+              <li>Avoid elevators</li>
+              <li>Wait for official updates</li>
             </ul>
           </div>
 
-          <div className="bg-[#11162b] p-4 rounded-xl">
-            <h3 className="font-semibold mb-2">🛡 Security Threat</h3>
-            <ul className="text-gray-400 space-y-1">
-              <li>• Lock doors</li>
-              <li>• Stay inside</li>
-              <li>• Call security</li>
-              <li>• Do not confront intruders</li>
+          <div className="bg-[#FFFFFF0D] p-4 rounded-xl">
+            <h3 className={`mb-2 ${FONTSIZE[16]} ${FONTWEIGHT[700]}`}>
+              <img src={Alert} alt="" className="w-5 h-5 mb-3" /> Security Threat</h3>
+            <ul className={`space-y-1 list-disc list-inside ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>
+              <li>Lock doors</li>
+              <li>Stay inside</li>
+              <li>Call security</li>
+              <li>Do not confront intruders</li>
             </ul>
           </div>
 
-          <div className="bg-[#11162b] p-4 rounded-xl">
-            <h3 className="font-semibold mb-2">💧 Water Leakage</h3>
-            <ul className="text-gray-400 space-y-1">
-              <li>• Turn off valves</li>
-              <li>• Avoid wet areas</li>
-              <li>• Inform maintenance</li>
-              <li>• Document damage</li>
+          <div className="bg-[#FFFFFF0D] p-4 rounded-xl">
+            <h3 className={`mb-2 ${FONTSIZE[16]} ${FONTWEIGHT[700]}`}>
+              <img src={Water} alt="" className="w-5 h-5 mb-3" /> Water Leakage</h3>
+            <ul className={`space-y-1 list-disc list-inside ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>
+              <li>Turn off valves</li>
+              <li>Avoid wet areas</li>
+              <li>Inform maintenance</li>
+              <li>Document damage</li>
             </ul>
           </div>
 
-          <div className="bg-[#11162b] p-4 rounded-xl">
-            <h3 className="font-semibold mb-2">🔥 Gas Leak</h3>
-            <ul className="text-gray-400 space-y-1">
-              <li>• Do not use switches</li>
-              <li>• Open windows</li>
-              <li>• Evacuate area</li>
-              <li>• Call emergency</li>
+          <div className="bg-[#FFFFFF0D] p-4 rounded-xl">
+            <h3 className={`mb-2 ${FONTSIZE[16]} ${FONTWEIGHT[700]}`}>
+              <img src={Thunder} alt="" className="w-5 h-5 mb-3" /> Gas Leak</h3>
+            <ul className={`space-y-1 list-disc list-inside ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>
+              <li>Do not use switches</li>
+              <li>Open windows</li>
+              <li>Evacuate area</li>
+              <li>Call emergency</li>
             </ul>
           </div>
-
         </div>
       </div>
-
     </div>
   );
 };
