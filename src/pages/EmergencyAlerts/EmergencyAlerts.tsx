@@ -9,36 +9,48 @@ import worker from "../../assets/emergencyAlerts/worker.png";
 import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
 
 type AlertHistory = {
-  type: string;
+  img?: string;
+  type: string; 
+  code?: string;
   priority: "Low" | "Medium" | "High";
   location: string;
-  datetime: string;
+  date: number | string;
+  time: string;
   assigned: string;
   status: "Active" | "Resolved";
 };
 
 export const ALERT_HISTORY: AlertHistory[] = [
   {
+    img: "",
     type: "Water Leakage",
+    code: "#EA003",
     priority: "Medium",
     location: "Block A - Common Area",
-    datetime: "2026-01-28 08:30 PM",
+    date: "2026-01-28",
+    time: "08:30 PM",
     assigned: "Team-2",
     status: "Active",
   },
   {
+    img: "",
     type: "Power Failure",
+    code: "#EA004",
     priority: "Medium",
     location: "Block C",
-    datetime: "2026-01-27",
+    date: "2026-01-27",
+    time: "10:15 AM",
     assigned: "Team-1",
     status: "Resolved",
   },
   {
+    img: "",
     type: "Elevator Emergency",
+    code: "#EA005",
     priority: "High",
-    location: "Block B",
-    datetime: "2026-01-27",
+    location: "Block B - Elevator 2",
+    date: "2026-01-27",
+    time: "02:45 PM",
     assigned: "Team-3",
     status: "Resolved",
   },
@@ -144,25 +156,17 @@ const EmergencyDashboard: React.FC = () => {
       </div>
 
       <div className="rounded-2xl p-5"
-        style={{ border: "1px solid #FFFFFF33", background: "#FFFFFF0D"}}>
-        <h2
-          className={`mb-4 ${FONTSIZE[24]}`}
-          style={{ ...FONTWEIGHT[700] }}
-        >
+        style={{ border: "1px solid #FFFFFF33", background: "#FFFFFF0D" }}>
+        <h2 className={`mb-1 ${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>
           📄 Emergency Alert History
         </h2>
+        <p className={`mb-1 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>All emergency alerts related to maintenance</p>
 
         <div className="overflow-auto">
           <table className="w-full">
-
-            <thead
-              className={FONTSIZE[14]}
-              style={{
-                color: COLORS.secoundy_gray,
-                borderBottom: "1px solid #ffffff1a",
-              }}
-            >
-              <tr>
+            <thead className={`${FONTSIZE[12]} ${FONTWEIGHT[700]}`}
+              style={{ color: COLORS.secoundy_gray, borderBottom: "1px solid #ffffff1a" }}>
+              <tr className="uppercase">
                 <th className="text-left py-3">Alert Type</th>
                 <th className="text-left py-3">Priority</th>
                 <th className="text-left py-3">Location</th>
@@ -172,43 +176,26 @@ const EmergencyDashboard: React.FC = () => {
               </tr>
             </thead>
 
-            <tbody className="divide-y" style={{ borderColor: "#ffffff0d" }}>
+            <tbody className="">
               {ALERT_HISTORY.map((item, index) => {
                 const p = priorityStyle(item.priority);
                 const s = statusStyle(item.status);
 
                 return (
-                  <tr key={index} className={FONTSIZE[14]}>
-                    <td className="py-3">{item.type}</td>
-
+                  <tr key={index} className={FONTSIZE[14]} style={{ borderBottom: "1px solid #ffffff1a" }}>
+                    <td className="py-3">{item.type} <br /> {item.code}</td>
                     <td>
-                      <span
-                        className="px-3 py-1 rounded"
-                        style={{
-                          background: p.bg,
-                          color: p.color,
-                          ...FONTWEIGHT[500],
-                        }}
-                      >
+                      <span className="px-3 py-1 rounded-2xl"
+                        style={{ background: p.bg, color: p.color, ...FONTWEIGHT[500] }}>
                         {item.priority}
                       </span>
                     </td>
-
                     <td style={{ color: COLORS.blue }}>{item.location}</td>
-
-                    <td style={{ color: COLORS.grey }}>{item.datetime}</td>
-
+                    <td style={{ color: COLORS.grey }}>{item.date} <br /> {item.time} </td>
                     <td style={{ color: COLORS.smalltext }}>{item.assigned}</td>
-
                     <td>
-                      <span
-                        className="px-3 py-1 rounded"
-                        style={{
-                          background: s.bg,
-                          color: s.color,
-                          ...FONTWEIGHT[500],
-                        }}
-                      >
+                      <span className="px-3 py-1 rounded-2xl"
+                        style={{ background: s.bg, color: s.color, ...FONTWEIGHT[500] }}>
                         {item.status}
                       </span>
                     </td>
