@@ -57,3 +57,4 @@ export const FONTWEIGHT = {
   800: { fontWeight: 800 }, // ExtraBold
   900: { fontWeight: 900 }, // Black
 };
+
