@@ -57,7 +57,10 @@ const ProviderCard = ({
             <div className="flex-1">
               <h3
                 className={`text-lg font-semibold ${FONTSIZE[20]}`}
-                style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}
+                style={{
+                  fontWeight: WEIGHT.seven,
+                  color: COLORS.primary_white,
+                }}
               >
                 {name}
               </h3>
@@ -85,8 +88,8 @@ const ProviderCard = ({
                   status === "available"
                     ? "bg-[#00C95033] text-[#05DF72] border border-[#05DF724D]"
                     : status === "on-job"
-                    ? "bg-[#FF690033] text-[#FF8904] border border-[#FF89044D]"
-                    : "bg-[#6A728233] text-[#99A1AF] border border-[#99A1AF4D]"
+                      ? "bg-[#FF690033] text-[#FF8904] border border-[#FF89044D]"
+                      : "bg-[#6A728233] text-[#99A1AF] border border-[#99A1AF4D]"
                 } ${FONTSIZE[12]}`}
                 style={{ fontWeight: WEIGHT.seven }}
               >
@@ -95,16 +98,16 @@ const ProviderCard = ({
                     status === "available"
                       ? "bg-[#05DF72]"
                       : status === "on-job"
-                      ? "bg-[#FF8904]"
-                      : "bg-[#99A1AF]"
+                        ? "bg-[#FF8904]"
+                        : "bg-[#99A1AF]"
                   }`}
                 ></span>
 
                 {status === "available"
                   ? "Available"
                   : status === "on-job"
-                  ? "On Job"
-                  : "Off Job"}
+                    ? "On Job"
+                    : "Off Job"}
               </div>
             </div>
           </div>

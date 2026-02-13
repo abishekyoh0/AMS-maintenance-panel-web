@@ -1,14 +1,20 @@
-import { COLORS,  FONTSIZE, WEIGHT } from "../../constent/uiconstent";
+import { COLORS, FONTSIZE, WEIGHT } from "../../constent/uiconstent";
 
 type StatCardProps = {
   title: string;
   value: number;
   icon: string;
   gradientColors?: [string, string];
-  borderColor?: string; 
+  borderColor?: string;
 };
 
-const StatCard = ({ title, value, icon, gradientColors,borderColor }: StatCardProps) => {
+const StatCard = ({
+  title,
+  value,
+  icon,
+  gradientColors,
+  borderColor,
+}: StatCardProps) => {
   return (
     <div
       className="rounded-xl p-4 text-white shadow"
@@ -16,7 +22,7 @@ const StatCard = ({ title, value, icon, gradientColors,borderColor }: StatCardPr
         background: gradientColors
           ? `linear-gradient(135deg, ${gradientColors[0]}, ${gradientColors[1]})`
           : undefined,
-           border: `1px solid ${borderColor || "#FFFFFF33"}`,
+        border: `1px solid ${borderColor || "#FFFFFF33"}`,
       }}
     >
       <div className="w-10 h-10 flex items-center justify-center rounded-lg mb-3">
@@ -25,14 +31,14 @@ const StatCard = ({ title, value, icon, gradientColors,borderColor }: StatCardPr
 
       <h2
         className={`text-2xl font-bold ${FONTSIZE[30]}`}
-        style={{ fontWeight:WEIGHT.seven, color: COLORS.primary_white }}
+        style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}
       >
         {value}
       </h2>
 
       <p
         className={`text-sm opacity-50 ${FONTSIZE[14]}`}
-        style={{ fontWeight:WEIGHT.four, color: COLORS.cardsubhead }}
+        style={{ fontWeight: WEIGHT.four, color: COLORS.cardsubhead }}
       >
         {title}
       </p>
