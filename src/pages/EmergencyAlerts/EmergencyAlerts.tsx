@@ -8,6 +8,60 @@ import Clock from "../../assets/emergencyAlerts/clock.png";
 import worker from "../../assets/emergencyAlerts/worker.png";
 import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
 
+type AlertHistory = {
+  type: string;
+  priority: "Low" | "Medium" | "High";
+  location: string;
+  datetime: string;
+  assigned: string;
+  status: "Active" | "Resolved";
+};
+
+export const ALERT_HISTORY: AlertHistory[] = [
+  {
+    type: "Water Leakage",
+    priority: "Medium",
+    location: "Block A - Common Area",
+    datetime: "2026-01-28 08:30 PM",
+    assigned: "Team-2",
+    status: "Active",
+  },
+  {
+    type: "Power Failure",
+    priority: "Medium",
+    location: "Block C",
+    datetime: "2026-01-27",
+    assigned: "Team-1",
+    status: "Resolved",
+  },
+  {
+    type: "Elevator Emergency",
+    priority: "High",
+    location: "Block B",
+    datetime: "2026-01-27",
+    assigned: "Team-3",
+    status: "Resolved",
+  },
+];
+
+const priorityStyle = (priority: string) => {
+  if (priority === "High")
+    return { bg: `${COLORS.red}33`, color: COLORS.red };
+
+  if (priority === "Medium")
+    return { bg: `${COLORS.orange}33`, color: COLORS.orange };
+
+  return { bg: `${COLORS.blue}33`, color: COLORS.blue };
+};
+
+const statusStyle = (status: string) => {
+  if (status === "Active")
+    return { bg: `${COLORS.green}33`, color: COLORS.green };
+
+  return { bg: "#6A728233", color: COLORS.secoundy_gray };
+};
+
+
 const EmergencyDashboard: React.FC = () => {
   return (
     <div className="space-y-6" style={{ color: COLORS.primary_white }}>
@@ -46,19 +100,19 @@ const EmergencyDashboard: React.FC = () => {
       </h2>
 
       <div className="rounded-2xl border border-[#FF64674D] bg-linear-to-r from-[#FB2C361A] to-[#FF69001A] p-4 space-y-5">
-          <div className="flex flex-wrap justify-between items-center">
-            <div className="flex gap-3 items-center">
-              <img src={Water} alt="" />
-              <div>
-                <p className={`flex items-center ${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>
-                  Water Leakage
-                </p>
-                <p className={`${FONTSIZE[16]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>Alert ID: #A2035</p>
-              </div>
+        <div className="flex flex-wrap justify-between items-center">
+          <div className="flex gap-3 items-center">
+            <img src={Water} alt="" />
+            <div>
+              <p className={`flex items-center ${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>
+                Water Leakage
+              </p>
+              <p className={`${FONTSIZE[16]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>Alert ID: #A2035</p>
             </div>
-            <div className={`px-3 py-1 rounded-full ${FONTSIZE[14]} ${FONTWEIGHT[700]}`} style={{ backgroundColor: COLORS.orange + "33", color: COLORS.orange }}>
-              Medium Priority
-            </div>
+          </div>
+          <div className={`px-3 py-1 rounded-full ${FONTSIZE[14]} ${FONTWEIGHT[700]}`} style={{ backgroundColor: COLORS.orange + "33", color: COLORS.orange }}>
+            Medium Priority
+          </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-3 mt-4 text-sm">
@@ -74,7 +128,7 @@ const EmergencyDashboard: React.FC = () => {
 
           <div className="bg-[#FFFFFF0D] p-3 rounded-lg">
             <p className={`mb-2 ${FONTSIZE[12]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.secoundy_gray }}>Assigned</p>
-            <p className={`flex gap-2 ${FONTSIZE[16]} ${FONTWEIGHT[700]}`}> <img src={worker} alt="" className="w-5 h-5"/> Team-2</p>
+            <p className={`flex gap-2 ${FONTSIZE[16]} ${FONTWEIGHT[700]}`}> <img src={worker} alt="" className="w-5 h-5" /> Team-2</p>
           </div>
         </div>
 
@@ -84,80 +138,83 @@ const EmergencyDashboard: React.FC = () => {
           Please avoid the area.
         </div>
 
-        <div className={`mt-3 bg-[#F0B1001A] border border-[#FDC7004D] p-3 rounded-lg ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.orange }}> 
+        <div className={`mt-3 bg-[#F0B1001A] border border-[#FDC7004D] p-3 rounded-lg ${FONTSIZE[14]} ${FONTWEIGHT[400]}`} style={{ color: COLORS.orange }}>
           ⚠️ This leak requires maintenance team action. Please coordinate with security and admin.
         </div>
       </div>
 
-      <div className="rounded-2xl border border-[#FFFFFF33] bg-[#FFFFFF0D] p-5">
-        <h2 className={`mb-4 ${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>
+      <div className="rounded-2xl p-5"
+        style={{ border: "1px solid #FFFFFF33", background: "#FFFFFF0D"}}>
+        <h2
+          className={`mb-4 ${FONTSIZE[24]}`}
+          style={{ ...FONTWEIGHT[700] }}
+        >
           📄 Emergency Alert History
         </h2>
 
-        <div >
-          <table className="w-full text-sm">
-            <thead className="text-gray-400 border-b border-white/10">
+        <div className="overflow-auto">
+          <table className="w-full">
+
+            <thead
+              className={FONTSIZE[14]}
+              style={{
+                color: COLORS.secoundy_gray,
+                borderBottom: "1px solid #ffffff1a",
+              }}
+            >
               <tr>
-                <th className="text-left py-2">Alert Type</th>
-                <th className="text-left py-2">Priority</th>
-                <th className="text-left py-2">Location</th>
-                <th className="text-left py-2">Date & Time</th>
-                <th className="text-left py-2">Assigned</th>
-                <th className="text-left py-2">Status</th>
+                <th className="text-left py-3">Alert Type</th>
+                <th className="text-left py-3">Priority</th>
+                <th className="text-left py-3">Location</th>
+                <th className="text-left py-3">Date & Time</th>
+                <th className="text-left py-3">Assigned</th>
+                <th className="text-left py-3">Status</th>
               </tr>
             </thead>
 
-            <tbody className="divide-y divide-white/5">
-              <tr>
-                <td className="py-3">💧 Water Leakage</td>
-                <td>
-                  <span className="bg-orange-600/30 text-orange-400 px-2 py-1 rounded">
-                    Medium
-                  </span>
-                </td>
-                <td className="text-blue-400">Block A - Common Area</td>
-                <td>2026-01-28 08:30 PM</td>
-                <td>Team-2</td>
-                <td>
-                  <span className="bg-green-600/30 text-green-400 px-2 py-1 rounded">
-                    Active
-                  </span>
-                </td>
-              </tr>
+            <tbody className="divide-y" style={{ borderColor: "#ffffff0d" }}>
+              {ALERT_HISTORY.map((item, index) => {
+                const p = priorityStyle(item.priority);
+                const s = statusStyle(item.status);
 
-              <tr>
-                <td className="py-3">⚡ Power Failure</td>
-                <td>
-                  <span className="bg-orange-600/30 text-orange-400 px-2 py-1 rounded">
-                    Medium
-                  </span>
-                </td>
-                <td className="text-blue-400">Block C</td>
-                <td>2026-01-27</td>
-                <td>Team-1</td>
-                <td>
-                  <span className="bg-gray-600/30 px-2 py-1 rounded">
-                    Resolved
-                  </span>
-                </td>
-              </tr>
+                return (
+                  <tr key={index} className={FONTSIZE[14]}>
+                    <td className="py-3">{item.type}</td>
 
-              <tr>
-                <td className="py-3">🔥 Elevator Emergency</td>
-                <td>
-                  <span className="bg-red-600/30 text-red-400 px-2 py-1 rounded">
-                    High
-                  </span>
-                </td>
-                <td className="text-blue-400">Block B</td>
-                <td>2026-01-27</td>
-                <td>Team-3</td>
-                <td>
-                  <span className="bg-gray-600/30 px-2 py-1 rounded">
-                    Resolved
-                  </span>
-                </td>
-              </tr>
+                    <td>
+                      <span
+                        className="px-3 py-1 rounded"
+                        style={{
+                          background: p.bg,
+                          color: p.color,
+                          ...FONTWEIGHT[500],
+                        }}
+                      >
+                        {item.priority}
+                      </span>
+                    </td>
+
+                    <td style={{ color: COLORS.blue }}>{item.location}</td>
+
+                    <td style={{ color: COLORS.grey }}>{item.datetime}</td>
+
+                    <td style={{ color: COLORS.smalltext }}>{item.assigned}</td>
+
+                    <td>
+                      <span
+                        className="px-3 py-1 rounded"
+                        style={{
+                          background: s.bg,
+                          color: s.color,
+                          ...FONTWEIGHT[500],
+                        }}
+                      >
+                        {item.status}
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
