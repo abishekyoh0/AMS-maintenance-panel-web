@@ -9,37 +9,32 @@ export default function CompactTask({ task }: { task: Task }) {
   return (
     <div className="relative bg-[#FFFFFF0D] border border-[#FFFFFF33] rounded-2xl px-6 py-5 flex justify-between items-center hover:border-white/20 transition duration-300">
 
-      {/* LEFT SIDE */}
       <div className="flex items-start gap-4">
 
-        {/* ICON */}
         <div className="text-gray-400 text-xl mt-1">
           <img src={tools} alt="Task" className="w-6 h-6 object-contain" />
         </div>
 
-        {/* TEXT CONTENT */}
         <div>
           <h4 style={FONTWEIGHT[700]} className={`font-semibold text-[#FFFFFF] text-lg ${FONTSIZE[18]}`}>
             {task.title}
           </h4>
 
-          <div className="flex items-center gap-3 text-sm text-gray-400 mt-2 flex-wrap">
+          <div className="flex items-center gap-3 text-sm text-[#99A1AF] mt-2 flex-wrap">
   
-  {/* Location */}
   <div style={FONTWEIGHT[400]} className={`flex items-center gap-1 ${FONTSIZE[14]}`}>
     <img
       src={location}
       alt="location"
       className="w-4 h-4 object-contain"
     />
-    <span className="text-[##99A1AF]">{task.location}</span>
+    <span className="text-[#99A1AF]">{task.location}</span>
   </div>
 
   <span>•</span>
 
-  {/* Worker */}
   <div style={FONTWEIGHT[400]} className={`flex items-center gap-1 ${FONTSIZE[14]}`}>
-    <img
+    <img 
       src={person}
       alt="worker"
       className="w-4 h-4 object-contain"
@@ -51,7 +46,6 @@ export default function CompactTask({ task }: { task: Task }) {
 
   <span>•</span>
 
-  {/* Time */}
   <div style={FONTWEIGHT[400]} className={`flex items-center gap-1 ${FONTSIZE[14]}`}>
     <img
       src={clock}
@@ -66,23 +60,33 @@ export default function CompactTask({ task }: { task: Task }) {
         </div>
       </div>
 
-      {/* RIGHT SIDE BADGES */}
       <div style={FONTWEIGHT[700]} className={`flex items-center gap-3 ${FONTSIZE[12]}`}>
         <PriorityBadge priority={task.priority} />
-        <StatusBadge status={task.status} />
+        <StatusBadge status={mapStatus(task.status)} />
       </div>
     </div>
   );
 }
 
-/* ================= PRIORITY BADGE ================= */
+function mapStatus(status: string): "In Progress" | "Assigned" | "Pending Parts" | "Completed" {
+  switch (status) {
+    case "In Progress":
+    case "Assigned":
+    case "Pending Parts":
+    case "Completed":
+      return status;
+    default:
+      return "Assigned"; 
+  }
+}
 
-function PriorityBadge({
+
+ function PriorityBadge({
   priority,
 }: {
   priority: Task["priority"];
 }) {
-  const styles = {
+  const styles: Record<Task["priority"], string> = {
     Critical:
       "bg-[#FB2C3633] text-[#FF6467] border border-[#FF646766]",
     High:
@@ -94,7 +98,8 @@ function PriorityBadge({
   };
 
   return (
-    <span style={FONTWEIGHT[400]}
+    <span
+      style={FONTWEIGHT[400]}
       className={`px-3 py-1 rounded-full text-xs font-medium ${FONTSIZE[12]} ${styles[priority]}`}
     >
       {priority}
@@ -102,14 +107,17 @@ function PriorityBadge({
   );
 }
 
-/* ================= STATUS BADGE ================= */
+
 
 function StatusBadge({
   status,
 }: {
-  status: Task["status"];
+  status: "In Progress" | "Assigned" | "Pending Parts" | "Completed";
 }) {
-  const styles = {
+const styles: Record<
+  "In Progress" | "Assigned" | "Pending Parts" | "Completed",
+  string
+> = {
     "In Progress":
       "bg-[#2B7FFF33] text-[#51A2FF] border border-[#51A2FF4D]",
     Assigned:

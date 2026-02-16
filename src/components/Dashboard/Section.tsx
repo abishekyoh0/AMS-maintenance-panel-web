@@ -11,7 +11,6 @@ export default function Section({ title, icon, children }: Props) {
   return (
     <div className="space-y-6">
       
-      {/* ===== HEADER ===== */}
       <div className="flex items-center gap-3">
         {icon && (
           <img
@@ -33,7 +32,6 @@ export default function Section({ title, icon, children }: Props) {
         </h2>
       </div>
 
-      {/* ===== CONTENT ===== */}
       {children}
     </div>
   );
