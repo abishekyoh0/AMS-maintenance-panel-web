@@ -6,6 +6,7 @@ type StatCardProps = {
   icon: string;
   gradientColors?: [string, string];
   borderColor?: string;
+  textColor?: string;
 };
 
 const StatCard = ({
@@ -14,6 +15,7 @@ const StatCard = ({
   icon,
   gradientColors,
   borderColor,
+  textColor,
 }: StatCardProps) => {
   return (
     <div
@@ -38,7 +40,7 @@ const StatCard = ({
 
       <p
         className={`text-sm opacity-50 ${FONTSIZE[14]}`}
-        style={{ fontWeight: WEIGHT.four, color: COLORS.cardsubhead }}
+        style={{ fontWeight: WEIGHT.four, color: textColor }}
       >
         {title}
       </p>

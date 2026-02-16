@@ -79,15 +79,7 @@ const SearchFilter = ({ onFilterChange }: Props) => {
           <button
             key={index}
             onClick={() => handleCategoryClick(cat.name)}
-            className={`h-24 rounded-[14px] border
-    ${
-      selectedCategory === cat.name
-        ? "bg-cyan-500 border-cyan-500 text-white"
-        : "bg-[#FFFFFF0D] border-[#FFFFFF33] text-[#FFFFFF66] hover:bg-cyan-500 hover:text-white"
-    }
-    flex flex-col items-center justify-center cursor-pointer
-    gap-2
-    transition duration-200 ${FONTSIZE[12]}`}
+            className={`h-24 rounded-[14px] border ${selectedCategory === cat.name ? "bg-[#00B8DB] border-[#FFFFFF33] text-white" : "bg-[#FFFFFF0D] border-[#FFFFFF33] text-[#FFFFFF66] hover:bg-[#00B8DB] hover:text-white"} flex flex-col items-center justify-center cursor-pointer gap-2 transition duration-200 ${FONTSIZE[12]}`}
             style={{ fontWeight: WEIGHT.seven }}
           >
             <img
