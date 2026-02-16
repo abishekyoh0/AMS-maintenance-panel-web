@@ -40,7 +40,6 @@ export default function StatCard({
     <div
       className={`p-6 rounded-2xl border backdrop-blur-xl ${styles[variant]} transition hover:scale-[1.02] duration-300`}
     >
-      {/* Image Icon */}
       <div className="mb-4">
         <img
           src={icon}
@@ -49,15 +48,12 @@ export default function StatCard({
         />
       </div>
 
-      {/* Value */}
       <h2 style={FONTWEIGHT[700]} className={`text-3xl text-[#FFFFFF] font-bold mb-1 ${FONTSIZE[30]}`}>{value}</h2>
 
-      {/* Title */}
       <p style={FONTWEIGHT[700]} className={`text-sm font-semibold ${FONTSIZE[14]} ${titleColors[variant]}`}>
         {title}
       </p>
 
-      {/* Subtitle */}
       <p style={FONTWEIGHT[400]} className={`text-xs text-[#99A1AF] mt-1 ${FONTSIZE[12]}`}>{subtitle}</p>
     </div>
   );
