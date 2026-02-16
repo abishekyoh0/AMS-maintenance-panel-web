@@ -66,7 +66,7 @@ const ACTIVE_ALERTS: Array<{
   {
     title: "Water Leakage",
     id: "#A2035",
-    priority: "medium",
+    priority: "high",
     color: COLORS.orange,
     icon: Water,
     location: "Block A - Common Area",

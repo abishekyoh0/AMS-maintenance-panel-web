@@ -56,11 +56,7 @@ const SearchFilter = ({ onFilterChange }: Props) => {
         placeholder="Search by name, phone, email, or employee ID..."
         value={searchTerm}
         onChange={(e) => handleSearchChange(e.target.value)}
-        className={`w-full mb-6 px-4 py-3 rounded-xl 
-                   bg-[#FFFFFF1A] border border-[#FFFFFF33] 
-                   text-white placeholder-gray-400 
-                   focus:outline-none focus:ring-2 
-                   focus:ring-cyan-500 ${FONTSIZE[16]}`}
+        className={`w-full mb-6 px-4 py-3 rounded-xl bg-[#FFFFFF1A] border border-[#FFFFFF33] text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 ${FONTSIZE[16]}`}
         style={{ fontWeight: WEIGHT.four }}
       />
 

@@ -6,7 +6,6 @@ import CompactTask from "../../components/Dashboard/CompactTask";
 import WorkerCard from "../../components/Dashboard/WorkerCard";
 import AvailableWorkerCard from "../../components/Dashboard/AvailableWorkerCard";
 import TodaySummary from "../../components/Dashboard/TodaySummary";
-
 import tools from "../../assets/Dashboard/tools.png";
 import alert from "../../assets/Dashboard/alarm.png";
 import notes from "../../assets/Dashboard/notes.png";
@@ -16,16 +15,16 @@ import clock from "../../assets/Dashboard/clock.png";
 import graph from "../../assets/Dashboard/graph.png";
 import green from "../../assets/Dashboard/green.png";
 import white from "../../assets/Dashboard/White.png";
-
 import { FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
+import { useNavigate } from "react-router-dom";
 
 export type Worker = {
   currentTask: ReactNode;
-  location: ReactNode;
+  location: string;
   id: string;
   name: string;
   role: string;
-  status: "On Task" | "Available";
+  status: string;
   tasksToday: number;
 };
 
@@ -46,7 +45,7 @@ export type Task = {
 
 export default function MaintenanceDashboard() {
   const [view, setView] = useState<"Active" | "Workers">("Active");
-
+  const navigate = useNavigate();
 
   const tasks = [
     {
@@ -103,58 +102,99 @@ export default function MaintenanceDashboard() {
     },
   ];
 
+  // const workers = [
+  //   {
+  //     id: "W1",
+  //     name: "Ramesh ",
+  //     role: "Plumber",
+  //     status: "On Task",
+  //     tasksToday: 3,
+  //     location: "test",
+  //   },
+  //   {
+  //     id: "W2",
+  //     name: "Vikram ",
+  //     role: "Carpenter",
+  //     status: "On Task",
+  //     tasksToday: 3,
+  //     location: "test",
+  //   },
+  //   {
+  //     id: "W8",
+  //     name: "Vikramm ",
+  //     role: "Carpenterr",
+  //     status: "On Task",
+  //     tasksToday: 3,
+  //     location: "test",
+  //   },
+  //   {
+  //     id: "W9",
+  //     name: "Vikrammm",
+  //     role: "Carpenterr",
+  //     status: "On Task",
+  //     tasksToday: 3,
+  //     location: "test",
+  //   },
+  //   {
+  //     id: "W9",
+  //     name: "Vikrammm",
+  //     role: "Carpenterr",
+  //     status: "On Task",
+  //     tasksToday: 3,
+  //     location: "test",
+  //   },
+  //   {
+  //     id: "W3",
+  //     name: "Rajesh ",
+  //     role: "Electrician",
+  //     status: "Available",
+  //     tasksToday: 5,
+  //     location: "test",
+  //   },
+  //   {
+  //     id: "W4",
+  //     name: "Amit",
+  //     role: "Painter",
+  //     status: "Available",
+  //     tasksToday: 5,
+  //     location: "test",
+  //   },
+  // ];
+
   const workers = [
     {
       id: "W1",
-      name: "Ramesh ",
+      name: "Ramesh Kumar",
       role: "Plumber",
       status: "On Task",
       tasksToday: 3,
+      location: "Block A - Floor 3",
     },
     {
       id: "W2",
-      name: "Vikram ",
+      name: "Vikram Singh",
       role: "Carpenter",
       status: "On Task",
-      tasksToday: 3,
-    },
-    {
-      id: "W8",
-      name: "Vikramm ",
-      role: "Carpenterr",
-      status: "On Task",
-      tasksToday: 3,
-    },
-      {
-      id: "W9",
-      name: "Vikrammm",
-      role: "Carpenterr",
-      status: "On Task",
-      tasksToday: 3,
-    },
-     {
-      id: "W9",
-      name: "Vikrammm",
-      role: "Carpenterr",
-      status: "On Task",
-      tasksToday: 3,
+      tasksToday: 2,
+      location: "Block C - Floor 1",
     },
     {
       id: "W3",
-      name: "Rajesh ",
+      name: "Rajesh",
       role: "Electrician",
-      status: "Available",
+      status: "On Task",
       tasksToday: 5,
+      location: "Maintenance Office",
     },
     {
       id: "W4",
       name: "Amit",
       role: "Painter",
       status: "Available",
-      tasksToday: 5,
+      tasksToday: 1,
+      location: "Maintenance Office",
     },
   ];
-
 
   const criticalTasks = tasks.filter((t) => t.critical);
   const otherTasks = tasks.filter((t) => !t.critical);
@@ -165,112 +205,99 @@ export default function MaintenanceDashboard() {
   const inProgress = tasks.filter((t) => t.status === "In Progress").length;
 
   const sla =
-    Math.round(
-      (tasks.filter((t) => t.onTime).length / tasks.length) * 100
-    ) || 0;
-
+    Math.round((tasks.filter((t) => t.onTime).length / tasks.length) * 100) ||
+    0;
 
   return (
     <div className="text-white p-4 sm:p-6 md:p-8 space-y-8">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 lg:gap-8">
+        <div className="text-center lg:text-left">
+          <h1
+            style={FONTWEIGHT[700]}
+            className={`text-2xl sm:text-3xl lg:text-4xl font-bold flex items-center justify-center lg:justify-start ${FONTSIZE[36]}`}
+          >
+            <img
+              src={tools}
+              alt="Maintenance"
+              className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 mr-3"
+            />
+            Maintenance Control Center
+          </h1>
 
-    <div className="
-  flex flex-col 
-  lg:flex-row 
-  lg:items-center 
-  lg:justify-between 
-  gap-5 lg:gap-8
-">
-
-  <div className="text-center lg:text-left">
-    <h1
-      style={FONTWEIGHT[700]}
-      className={`text-2xl sm:text-3xl lg:text-4xl 
-                  font-bold flex items-center 
-                  justify-center lg:justify-start 
-                  ${FONTSIZE[36]}`}
-    >
-      <img
-        src={tools}
-        alt="Maintenance"
-        className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 mr-3"
-      />
-      Maintenance Control Center
-    </h1>
-
-    <p className="text-[#99A1AF] mt-2 text-sm sm:text-base">
-      Real-time task monitoring and worker management
-    </p>
-  </div>
-
-  <div className="
-    flex flex-col 
-    sm:flex-row 
-    w-full lg:w-auto 
-    gap-3
-  ">
-    
-    <button
-      className="
-        w-full sm:w-auto
-        px-6 py-2.5
-        rounded-xl
-        bg-linear-to-r from-[#FB2C36] to-[#E60076]
-        hover:scale-105
-        transition-all duration-300
-        flex items-center justify-center gap-2
-      "
-    >
-      <img src={alert} alt="Emergency" className="w-4 h-4" />
-      Emergency Alerts
-    </button>
-
-    <button
-      className="
-        w-full sm:w-auto
-        px-6 py-2.5
-        rounded-xl
-        bg-linear-to-r from-[#FF6900] to-[#E65C00]
-        hover:scale-105
-        transition-all duration-300
-        flex items-center justify-center gap-2
-      "
-    >
-      <img src={notes} alt="Complaints" className="w-4 h-4" />
-      All Complaints
-    </button>
-
-  </div>
-</div>
-
-
-      <div className="overflow-x-auto scroll-smooth">
-        <div className="flex gap-6 min-w-max lg:grid lg:grid-cols-5">
-          <div className="min-w-65">
-            <StatCard icon={alert} value={criticalTasks.length} title="Critical Tasks" subtitle="Needs immediate attention" variant="critical" />
-          </div>
-
-          <div className="min-w-65">
-            <StatCard icon={active} value={inProgress} title="Active Tasks" subtitle="Currently in progress" variant="active" />
-          </div>
-
-          <div className="min-w-65">
-            <StatCard icon={person} value={`${onTaskWorkers.length}/${workers.length}`} title="Workers Active" subtitle="Available now" variant="workers" />
-          </div>
-
-          <div className="min-w-65">
-            <StatCard icon={clock} value={`${sla}%`} title="SLA Compliance" subtitle="Tasks within deadline" variant="sla" />
-          </div>
-
-          <div className="min-w-65">
-            <StatCard icon={graph} value={completedToday} title="Completed Today" subtitle="+5 from yesterday" variant="completed" />
-          </div>
+          <p className="text-[#99A1AF] mt-2 text-sm sm:text-base">
+            Real-time task monitoring and worker management
+          </p>
         </div>
+
+        <div className="flex flex-col sm:flex-row w-full lg:w-auto gap-3">
+          <button
+            className=" w-full sm:w-auto px-6 py-2.5 rounded-xl bg-linear-to-r from-[#FB2C36] to-[#E60076] hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+            onClick={() => {
+              navigate("/emergencyalerts");
+            }}
+          >
+            <img src={alert} alt="Emergency" className="w-4 h-4" />
+            Emergency Alerts
+          </button>
+
+          <button
+            className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-linear-to-r from-[#FF6900] to-[#E65C00] hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+            onClick={() => {
+              navigate("/complaints");
+            }}
+          >
+            <img src={notes} alt="Complaints" className="w-4 h-4" />
+            All Complaints
+          </button>
+        </div>
+      </div>
+
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
+        <StatCard
+          icon={alert}
+          value={criticalTasks.length}
+          title="Critical Tasks"
+          subtitle="Needs immediate attention"
+          variant="critical"
+        />
+
+        <StatCard
+          icon={active}
+          value={inProgress}
+          title="Active Tasks"
+          subtitle="Currently in progress"
+          variant="active"
+        />
+
+        <StatCard
+          icon={person}
+          value={`${onTaskWorkers.length}/${workers.length}`}
+          title="Workers Active"
+          subtitle="Available now"
+          variant="workers"
+        />
+
+        <StatCard
+          icon={clock}
+          value={`${sla}%`}
+          title="SLA Compliance"
+          subtitle="Tasks within deadline"
+          variant="sla"
+        />
+
+        <StatCard
+          icon={graph}
+          value={completedToday}
+          title="Completed Today"
+          subtitle="+5 from yesterday"
+          variant="completed"
+        />
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4">
         <button
           onClick={() => setView("Active")}
-          className={`px-6 py-3 rounded-xl ${
+          className={`px-6 py-3 rounded-xl cursor-pointer ${
             view === "Active"
               ? "bg-linear-to-r from-[#FF6900] to-[#E7000B]"
               : "bg-[#FFFFFF0D]"
@@ -281,7 +308,7 @@ export default function MaintenanceDashboard() {
 
         <button
           onClick={() => setView("Workers")}
-          className={`px-6 py-3 rounded-xl ${
+          className={`px-6 py-3 rounded-xl  cursor-pointer ${
             view === "Workers"
               ? "bg-linear-to-r from-[#2B7FFF] to-[#0092B8]"
               : "bg-[#FFFFFF0D]"
@@ -316,84 +343,55 @@ export default function MaintenanceDashboard() {
       {view === "Workers" && (
         <>
           <Section title="Workers on Task" icon={green}>
-  <div className="overflow-x-auto scroll-smooth lg:overflow-visible">
-    
-    <div className="flex gap-6 min-w-max 
-                    lg:min-w-0 
-                    lg:grid lg:grid-cols-2">
-      
-      {onTaskWorkers.map((worker) => {
-        const activeTask = tasks.find(
-          (t) =>
-            t.worker === worker.name &&
-            t.status === "In Progress"
-        );
+            <div className="overflow-x-auto scroll-smooth lg:overflow-visible">
+              <div className="flex gap-6 min-w-max lg:min-w-0 lg:grid lg:grid-cols-2">
+                {onTaskWorkers.map((worker) => {
+                  const activeTask = tasks.find(
+                    (t) =>
+                      t.worker.trim() === worker.name.trim() &&
+                      t.status === "In Progress",
+                  );
 
-        return (
-          <div
-            key={worker.id}
-            className="min-w-[320px] lg:min-w-0"
-          >
-            <WorkerCard
-              worker={{
-                ...worker,
-                status: worker.status as "On Task" | "Available",
-                currentTask: activeTask
-                  ? activeTask.title
-                  : "No active task",
-                location: activeTask
-                  ? activeTask.location
-                  : "N/A",
-              }}
-            />
-          </div>
-        );
-      })}
-
-    </div>
-
-  </div>
-</Section>
-
+                  return (
+                    <div key={worker.id} className="min-w-[320px] lg:min-w-0">
+                      <WorkerCard
+                        worker={{
+                          ...worker,
+                          status: worker.status,
+                          currentTask: activeTask
+                            ? activeTask.title
+                            : "No active task",
+                          location: activeTask
+                            ? `${activeTask.location}${activeTask.flat ? ` - ${activeTask.flat}` : ""}`
+                            : worker.location || "Not Assigned",
+                        }}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </Section>
 
           <Section title="Available Workers" icon={white}>
-  <div className="overflow-x-auto scroll-smooth lg:overflow-visible">
-    
-    <div className="
-      flex gap-6 min-w-max
-      lg:min-w-0
-      lg:grid lg:grid-cols-2
-    ">
-      
-      {availableWorkers.map((worker) => (
-        <div
-          key={worker.id}
-          className="min-w-[320px] lg:min-w-0"
-        >
-          <AvailableWorkerCard
-            worker={{
-              ...worker,
-              status: worker.status as "On Task" | "Available",
-              currentTask: (
-                <span className="text-gray-400">
-                  No active task
-                </span>
-              ),
-              location: (
-                <span className="text-gray-400">
-                  N/A
-                </span>
-              ),
-            }}
-          />
-        </div>
-      ))}
-
-    </div>
-
-  </div>
-</Section>
-
+            <div className="overflow-x-auto scroll-smooth lg:overflow-visible">
+              <div className=" flex gap-6 min-w-max lg:min-w-0 lg:grid lg:grid-cols-2 ">
+                {availableWorkers.map((worker) => (
+                  <div key={worker.id} className="min-w-[320px] lg:min-w-0">
+                    <AvailableWorkerCard
+                      worker={{
+                        ...worker,
+                        status: worker.status as "On Task" | "Available",
+                        currentTask: (
+                          <span className="text-gray-400">No active task</span>
+                        ),
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Section>
 
           <TodaySummary
             total={tasks.length}

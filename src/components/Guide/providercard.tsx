@@ -68,7 +68,7 @@ const ProviderCard = ({
               <div className="flex items-center gap-2 text-sm mt-1">
                 <img src={serviceImage} alt={service} className="w-4 h-4" />
                 <span
-                  className={`text-cyan-400 ${FONTSIZE[14]}`}
+                  className={` ${FONTSIZE[14]}`}
                   style={{ fontWeight: WEIGHT.seven, color: COLORS.para }}
                 >
                   {service}
@@ -76,7 +76,7 @@ const ProviderCard = ({
               </div>
 
               <p
-                className={`text-slate-300 text-xs mt-1 ${FONTSIZE[12]}`}
+                className={`text-[#99A1AF] text-xs mt-1 ${FONTSIZE[12]}`}
                 style={{ fontWeight: WEIGHT.four, color: COLORS.grey }}
               >
                 ID: {serviceId}
@@ -144,10 +144,10 @@ const ProviderCard = ({
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-slate-700 pt-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-[#FFFFFF1A] pt-4">
         <div>
           <p
-            className={`text-slate-400 text-xs ${FONTSIZE[12]}`}
+            className={` text-xs ${FONTSIZE[12]}`}
             style={{ fontWeight: WEIGHT.four, color: COLORS.grey }}
           >
             Experience
@@ -162,7 +162,7 @@ const ProviderCard = ({
         </div>
         <div>
           <p
-            className={`text-slate-400 text-xs ${FONTSIZE[12]}`}
+            className={`text-xs ${FONTSIZE[12]}`}
             style={{ fontWeight: WEIGHT.four, color: COLORS.grey }}
           >
             Join Date
@@ -177,7 +177,7 @@ const ProviderCard = ({
         </div>
       </div>
 
-      <div className="border-t border-slate-700 pt-4 mt-4">
+      <div className="border-t border-[#FFFFFF1A] pt-4 mt-4">
         <p
           className={`text-slate-400 text-xs ${FONTSIZE[12]}`}
           style={{ fontWeight: WEIGHT.four, color: COLORS.grey }}
@@ -194,7 +194,7 @@ const ProviderCard = ({
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4 pt-4 border-t border-[#FFFFFF22]">
-        <div className="bg-slate-700/50 rounded-lg px-4 py-3 text-center">
+        <div className=" rounded-lg px-4 py-3 text-center">
           <p
             className={`text-xs ${FONTSIZE[12]}`}
             style={{ fontWeight: WEIGHT.four, color: COLORS.grey }}
@@ -210,7 +210,7 @@ const ProviderCard = ({
           </p>
         </div>
 
-        <div className="bg-slate-700/50 rounded-lg px-4 py-3 text-center">
+        <div className="rounded-lg px-4 py-3 text-center">
           <p
             className={`text-xs ${FONTSIZE[12]}`}
             style={{ fontWeight: WEIGHT.four, color: COLORS.grey }}
@@ -229,7 +229,7 @@ const ProviderCard = ({
 
       <button
         onClick={() => toast.success("Email Sent successfully!")}
-        className={`w-full mt-4 bg-[#00B8DB] hover:bg-[#00B8DB] cursor-pointer transition py-3 rounded-lg font-semibold flex items-center justify-center gap-2 ${FONTSIZE[16]}`}
+        className={`w-full mt-4 bg-[#00B8DB]  cursor-pointer transition py-3 rounded-lg font-semibold flex items-center justify-center gap-2 ${FONTSIZE[16]}`}
         style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}
       >
         <img src={mail} alt="email" className="w-5 h-5" />

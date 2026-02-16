@@ -10,14 +10,9 @@ interface Props {
 export default function Section({ title, icon, children }: Props) {
   return (
     <div className="space-y-6">
-      
       <div className="flex items-center gap-3">
         {icon && (
-          <img
-            src={icon}
-            alt={title}
-            className="w-5 h-5 object-contain"
-          />
+          <img src={icon} alt={title} className="w-5 h-5 object-contain" />
         )}
 
         <h2

@@ -122,22 +122,17 @@ export default function TaskCard({ task }: { task: Task }) {
 
       <div className="flex justify-between items-center rounded-xl p-4 border border-[#05DF724D] bg-[#00C9501A]">
         <div className="flex items-center gap-2 text-[#05DF72] text-sm">
-          <img
-            src={tick}
-            alt="On Time"
-            className="w-4 h-4 object-contain"
-          />
+          <img src={tick} alt="On Time" className="w-4 h-4 object-contain" />
           {task.onTime ? "On Time" : "⚠ Delayed"}
         </div>
 
-        <button className="px-4 py-2 bg-[#FFFFFF1A] text-[#FFFFFF] hover:bg-white/20 transition rounded-lg text-sm">
+        <button className="px-4 py-2 bg-[#FFFFFF1A] text-[#FFFFFF] hover:bg-white/20 transition rounded-lg text-sm cursor-pointer">
           View Details →
         </button>
       </div>
     </div>
   );
 }
-
 
 function Info({
   label,
@@ -154,20 +149,13 @@ function Info({
 }) {
   return (
     <div className="bg-[#FFFFFF1A] rounded-xl p-4 border border-white/10">
-      <p
-        style={FONTWEIGHT[400]}
-        className={`text-[#99A1AF] ${FONTSIZE[14]}`}
-      >
+      <p style={FONTWEIGHT[400]} className={`text-[#99A1AF] ${FONTSIZE[14]}`}>
         {label}
       </p>
 
       <div className="flex items-center gap-2 mt-2">
         {icon && (
-          <img
-            src={icon}
-            alt={label}
-            className="w-4 h-4 object-contain"
-          />
+          <img src={icon} alt={label} className="w-4 h-4 object-contain" />
         )}
 
         <p

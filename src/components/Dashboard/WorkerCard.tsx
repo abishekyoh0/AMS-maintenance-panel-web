@@ -7,24 +7,16 @@ import { FONTWEIGHT } from "../../constent/uiconstent";
 
 export default function WorkerCard({ worker }: { worker: Worker }) {
   return (
-    <div className="bg-linear-to-br from-[#00C9501A] to-[#00BC7D1A] 
-                    border border-[#05DF724D] 
-                    p-6 rounded-2xl space-y-4">
-
+    <div className="bg-linear-to-br from-[#00C9501A] to-[#00BC7D1A] border border-[#05DF724D] p-6 rounded-2xl space-y-4">
       <div className="flex justify-between items-start">
-
         <div className="flex items-center gap-4">
-
-          <div className="w-12 h-12 rounded-full bg-[#00C95033] 
-                          border border-green-500/30 
-                          flex items-center justify-center">
+          <div className="w-12 h-12 rounded-full bg-[#00C95033] border border-green-500/30 flex items-center justify-center">
             <img
               src={person}
               alt="Worker"
               className="w-8 h-8 object-cover rounded-full"
             />
           </div>
-
           <div>
             <p
               style={FONTWEIGHT[700]}
@@ -40,27 +32,15 @@ export default function WorkerCard({ worker }: { worker: Worker }) {
               {worker.role}
             </p>
           </div>
-
         </div>
 
         <span
           style={FONTWEIGHT[700]}
-          className={`inline-flex items-center gap-2 
-                      px-3 py-1 
-                      rounded-full text-xs 
-                      bg-[#00C95033] 
-                      text-[#05DF72] 
-                      border border-[#05DF724D] 
-                      ${FONTSIZE[12]}`}
+          className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs bg-[#00C95033] text-[#05DF72] border border-[#05DF724D] ${FONTSIZE[12]}`}
         >
-          <img
-            src={green}
-            alt="On Task"
-            className="w-3 h-3 object-contain"
-          />
+          <img src={green} alt="On Task" className="w-3 h-3 object-contain" />
           On Task
         </span>
-
       </div>
 
       <div className="bg-white/5 p-4 rounded-xl">
@@ -94,7 +74,6 @@ export default function WorkerCard({ worker }: { worker: Worker }) {
           {worker.tasksToday} tasks today
         </span>
       </div>
-
     </div>
   );
 }
