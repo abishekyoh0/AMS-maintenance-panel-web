@@ -33,7 +33,7 @@ export default function AppRoutes() {
           <Route path="/complaints" element={<Complaints />} />
           <Route path="/emergencyalerts" element={<EmergencyAlerts />} />
           <Route path="/guide" element={<Guide />} />
-          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/notification" element={<Notifications />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
