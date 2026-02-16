@@ -303,7 +303,7 @@ export const SignIn = () => {
                 </div>
                 <button
                   type="submit"
-                  className={`w-full bg-gradient-to-r from-[#FF6900] to-[#FE9A00] hover:from-emerald-600 hover:to-emerald-700 text-white font-semibold py-3 rounded-xl transition-all duration-200 shadow-lg shadow-[#FF690040]hover:shadow-[#FF690040] text-sm lg:text-base cursor-pointer ${FONTSIZE[16]}`}
+                  className={`w-full bg-gradient-to-r from-[#FF6900] to-[#FE9A00] hover:from-[#FF6900]/80 hover:to-[#FE9A00]/70 text-white font-semibold py-3 rounded-xl transition-all duration-200 shadow-lg shadow-[#FF690040]  text-sm lg:text-base cursor-pointer ${FONTSIZE[16]}`}
                   style={{
                     fontWeight: WEIGHT.four,
                     color: COLORS.primary_white,
