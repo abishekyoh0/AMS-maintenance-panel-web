@@ -14,6 +14,7 @@ type Props = {
   onFilterChange: (search: string, category: string) => void;
 };
 
+
 const categories = [
   { name: "All Services", image: book },
   { name: "Plumbing", image: plumbing },
