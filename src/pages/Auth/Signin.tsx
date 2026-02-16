@@ -316,7 +316,7 @@ export const SignIn = () => {
           </div>
         </div>
 
-        <div className="md:hidden px-4 pb-6 space-y-6">
+        <div className="md:hidden px-4 pb-6 space-y-6 ">
           <div className="mb-8">
             <h2
               className={`text-white text-3xl font-bold mb-2 ${FONTSIZE[48]}`}
