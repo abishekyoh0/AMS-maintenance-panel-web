@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { Mainlayout } from "../layout/Mainlayout";
 import ProtectedRoute from "./ProtectedRoute";
-import Dashboard from "../pages/Dashboard/Dashboard";
+import Dashboard from "../pages/Dashboard/MaintenanceDashboard";
 import Complaints from "../pages/Complaints/Complaints";
 import EmergencyAlerts from "../pages/EmergencyAlerts/EmergencyAlerts";
 import Guide from "../pages/Guide/Guide";
