@@ -11,7 +11,7 @@ import hvac from "../../assets/guide/hvac.png";
 import general from "../../assets/guide/general.png";
 import WorkOrdersTable from "../../components/Complaints/workordertable";
 import { useState } from "react";
-import AddWorkerModal from "../../components/Complaints/addWorkerModal";
+import AddWorkerModal from "../../components/Complaints/addworkermodal";
 
 export default function Complaints() {
 

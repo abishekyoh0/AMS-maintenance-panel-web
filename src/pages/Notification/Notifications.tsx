@@ -10,13 +10,14 @@ import EntryImg from "../../assets/notification/car.png";
 import SystemImg from "../../assets/notification/bell.png";
 import Clock from "../../assets/notification/clock.png";
 import ViewIcon from "../../assets/notification/eye.png";
-import { COLORS,  FONTSIZE, WEIGHT } from "../../constent/uiconstent";
-import { useNavigate } from "react-router-dom"; 
+import BackIcon from "../../assets/notification/back-arrow.png"
+import { COLORS, FONTSIZE, FONTWEIGHT, WEIGHT } from "../../constent/uiconstent";
+import { useNavigate } from "react-router-dom";
 import {
   Bell,
   CheckCircle,
-  Search, 
-  
+  Search,
+
   AlertTriangle,
   Settings,
   User,
@@ -30,7 +31,7 @@ const filter = [
   { label: "Assigned", icon: <User size={16} /> },
   { label: "Scheduled", icon: <Settings size={16} /> },
 ];
-    
+
 
 type AlertType = "CRITICAL" | "HIGH" | "MEDIUM" | "LOW";
 type AlertStatus = "Security" | "Visitor" | "Delivery" | "Parking" | "Entry" | "System";
@@ -140,8 +141,6 @@ const badgeColor = (type: AlertType) => {
   }
 };
 
-
-
 const borderGlow = (type: AlertType) => {
   switch (type) {
     case "CRITICAL":
@@ -175,87 +174,76 @@ const iconColor = (status: AlertStatus) => {
 const Notification: React.FC = () => {
   const navigate = useNavigate();
 
-    
-    const [activeFilter, setActiveFilter] = React.useState<string>("All");
-
+  const [activeFilter, setActiveFilter] = React.useState<string>("All");
 
   return (
-    <div style={{ color: COLORS.primary_white }} className="sm:px-6 md:px-10">
+    <div style={{ color: COLORS.primary_white }}>
 
-      
-      
-      {/* Maintenance Header Section */}
-<div className="rounded-2xl bg-gradient-to-br from-[#0c0f1f] via-[#0d1024] to-[#0f1431] p-6 mb-6">
-<div className="flex justify-between sm:justify-end pt-2 pb-6">
-        <button onClick={() => navigate("/")}
-          className="flex items-center gap-2 text-sm sm:text-base cursor-pointer">
-          {/* <img src={BackIcon} className="w-4 h-4 sm:w-5 sm:h-5" /> */}
-          Back to Dashboard
-        </button>
+      <div className="rounded-2xl bg-linear-to-br from-[#0c0f1f] via-[#0d1024] to-[#0f1431] p-6 mb-6">
+        <div className="pt-2 pb-3">
+          <button onClick={() => navigate("/")}
+            className={`flex items-center gap-2 sm:text-base cursor-pointer ${FONTSIZE[16]} ${FONTWEIGHT[400]}`}
+            style={{ color: COLORS.secoundy_gray }}>
+            <img src={BackIcon} className="w-4 h-4 sm:w-5 sm:h-5" />
+            Back to Dashboard
+          </button>
+        </div>
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
+          <div>
+            <h1 className="text-2xl font-bold">
+              Maintenance Notifications
+            </h1>
+
+            <p className="text-gray-400 mt-1 text-sm">
+              Work orders, schedules, and maintenance alerts
+            </p>
+
+            <div className="flex gap-3 mt-4 flex-wrap">
+              <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs font-medium">
+                12 Total
+              </span>
+              <span className="bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-xs font-medium">
+                5 Unread
+              </span>
+              <span className="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-xs font-medium">
+                7 Need Action
+              </span>
+            </div>
+          </div>
+
+          <button className="bg-green-500 hover:bg-green-600 transition px-4 py-2 rounded-full text-sm font-semibold shadow-lg shadow-green-500/20">
+            Mark All Read
+          </button>
+        </div>
+
+        <div className="mt-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4">
+          <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
+
+            <input
+              type="text"
+              placeholder="Search notifications..."
+              className="w-full lg:w-1/3 bg-white/5 border border-white/10 rounded-full py-2 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+
+            <div className="flex flex-wrap gap-3">
+              {["All", "Unread", "Action", "Urgent", "Assigned", "Scheduled"].map((filter) => (
+                <button
+                  key={filter}
+                  onClick={() => setActiveFilter(filter)}
+                  className={`px-4 py-2 rounded-full text-sm transition-all
+      ${activeFilter === filter
+                      ? "bg-blue-600 text-white shadow-lg shadow-blue-500/30"
+                      : "bg-white/5 text-gray-300 hover:bg-white/10"
+                    }`}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
       </div>
-  {/* Title + Mark All */}
-  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
-    <div>
-      <h1 className="text-2xl font-bold">
-        Maintenance Notifications
-      </h1>
-
-      <p className="text-gray-400 mt-1 text-sm">
-        Work orders, schedules, and maintenance alerts
-      </p>
-
-      {/* Stats */}
-      <div className="flex gap-3 mt-4 flex-wrap">
-        <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs font-medium">
-          12 Total
-        </span>
-        <span className="bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-xs font-medium">
-          5 Unread
-        </span>
-        <span className="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-xs font-medium">
-          7 Need Action
-        </span>
-      </div>
-    </div>
-
-    <button className="bg-green-500 hover:bg-green-600 transition px-4 py-2 rounded-full text-sm font-semibold shadow-lg shadow-green-500/20">
-      Mark All Read
-    </button>
-  </div>
-
-  {/* Search + Filters */}
-  <div className="mt-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4">
-    <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
-
-      {/* Search */}
-      <input
-        type="text"
-        placeholder="Search notifications..."
-        className="w-full lg:w-1/3 bg-white/5 border border-white/10 rounded-full py-2 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
-
-      {/* Filters */}
-       <div className="flex flex-wrap gap-3">
-        {["All", "Unread", "Action", "Urgent", "Assigned", "Scheduled"].map((filter) => (
-  <button
-    key={filter}
-    onClick={() => setActiveFilter(filter)}
-    className={`px-4 py-2 rounded-full text-sm transition-all
-      ${
-        activeFilter === filter
-          ? "bg-blue-600 text-white shadow-lg shadow-blue-500/30"
-          : "bg-white/5 text-gray-300 hover:bg-white/10"
-      }`}
-  >
-    {filter}
-  </button>
-))}
-
-      </div> 
-    </div>
-  </div>
-
-</div>
 
 
       <div className="mx-auto space-y-4">
@@ -275,7 +263,7 @@ const Notification: React.FC = () => {
                     {a.title}
                   </h2>
 
-                  <p  className={`sm:text-sm ${FONTSIZE[14]}`}>
+                  <p className={`sm:text-sm ${FONTSIZE[14]}`}>
                     {a.desc}
                   </p>
 
@@ -294,13 +282,13 @@ const Notification: React.FC = () => {
                     )}
 
                     <span className={`px-2 sm:px-3 py-1 rounded-md ${badgeColor(a.type)}`}
-                    style={{fontWeight: WEIGHT.four}}>
+                      style={{ fontWeight: WEIGHT.four }}>
                       {a.type}
                     </span>
 
                     {a.action && (
-                      <span  
-                      className="px-2 sm:px-3 py-1 rounded-md text-red-500">
+                      <span
+                        className="px-2 sm:px-3 py-1 rounded-md text-red-500">
                         ACTION REQUIRED
                       </span>
                     )}
@@ -326,9 +314,9 @@ const Notification: React.FC = () => {
 
       <div className="mt-6 flex justify-center sm:justify-end">
         <button className={`flex border p-2 rounded-lg items-center gap-2 sm:text-sm ${FONTSIZE[14]}`}
-        style={{ fontWeight: WEIGHT.four}}>
+          style={{ fontWeight: WEIGHT.four }}>
           <img src={CheckCircleIcon} className="w-4 h-4 sm:w-5 sm:h-5" />
-          Showing<span style={{ fontWeight: WEIGHT.seven}}>12</span> of <span style={{ fontWeight: WEIGHT.seven}}>24</span>notifications
+          Showing<span style={{ fontWeight: WEIGHT.seven }}>12</span> of <span style={{ fontWeight: WEIGHT.seven }}>24</span>notifications
         </button>
       </div>
     </div>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import plus from "../../assets/guide/plus.png";
 import { COLORS, FONTSIZE, WEIGHT } from "../../constent/uiconstent";
 import cancel from "../../assets/guide/close.png";
-import { Check } from "lucide-react";
+import { Check, X } from "lucide-react";
 
 type Props = {
   open: boolean;
@@ -65,14 +65,23 @@ export default function AddWorkerModal({ open, onClose }: Props) {
   return (
    <div className="fixed inset-0 bg-white/50 z-50 flex items-center justify-center p-4 sm:p-6 overflow-auto">
   <div className="w-full max-w-lg sm:max-w-2xl md:max-w-3xl bg-[#111827] text-white rounded-2xl shadow-xl max-h-[95vh] overflow-y-auto p-4 sm:p-6 md:p-8">
-
-    <h2
+<div className="flex justify-between items-center">
+      <h2
       className={`flex items-center gap-2 mb-6 ${FONTSIZE[30]}`}
       style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}
     >
       <img src={plus} alt="Add Worker" className="w-6 h-6 sm:w-6 sm:h-6 md:w-7 md:h-7" />
       Add New Worker
     </h2>
+        <button
+          onClick={onClose}
+          className="relative bottom-5 right-5 text-gray-400 hover:text-white"
+        >
+          <X />
+        </button>
+
+</div>
+
 
     <div className="bg-[#FFFFFF0D] border-[#FFFFFF33] rounded-xl p-3 sm:p-4 mb-4">
       <p className={`text-sm mb-3 ${FONTSIZE[20]}`} style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}>
