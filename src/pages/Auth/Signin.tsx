@@ -81,8 +81,6 @@ export const SignIn = () => {
                   <h2 className="text-3xl lg:text-5xl font-bold mb-4 lg:mb-6 bg-gradient-to-r from-[#FF8904] to-[#FFB900]  bg-clip-text text-transparent">
                     Running Smoothly
                   </h2>
-
-              
                 </div>
                 <p
                   className={` text-base lg:text-lg max-w-md ${FONTSIZE[18]}`}
