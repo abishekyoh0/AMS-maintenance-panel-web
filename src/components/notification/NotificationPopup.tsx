@@ -1,8 +1,11 @@
 import React from "react";
-
 import { useNavigate } from "react-router-dom";
 import { COLORS, FONTSIZE, WEIGHT } from "../../constent/uiconstent";
 import { X } from "lucide-react";
+import User from "../../assets/notification/user.png"
+import Parcel from "../../assets/notification/user.png"
+import Car from "../../assets/notification/user.png"
+import Bell from "../../assets/notification/user.png"
 
 type Props = {
   open: boolean;
@@ -11,21 +14,21 @@ type Props = {
 
 const notificationData = [
   {
-    // icon: User,
+    icon: User,
     title: "Visitor Approval Pending",
     desc: "John Doe waiting at Main Gate for Unit A-305",
     time: "5m ago",
     type: "Visitor",
   },
   {
-    // icon: Parcel,
+    icon: Parcel,
     title: "Large Delivery Arrived",
     desc: "Furniture delivery for Unit C-108 requires escort",
     time: "20m ago",
     type: "Delivery",
   },
   {
-    // icon: Car,
+    icon: Car,
     title: "Unregistered Vehicle",
     desc: "Vehicle ABC-1234 registration expired",
     time: "1h ago",
@@ -40,23 +43,20 @@ const NotificationPopup: React.FC<Props> = ({ open, setOpen }) => {
 
   return (
     <>
-      {/* Overlay */}
       <div
         className="fixed inset-0 z-40"
         onClick={() => setOpen(false)}
       />
 
-      {/* Popup */}
       <div
         className="fixed right-4 top-16 z-50 w-[95vw] sm:w-96 max-h-[80vh] overflow-y-auto bg-black rounded-xl"
         style={{ color: COLORS.primary_white }}
       >
-        <div className="bg-gradient-to-br from-[#00B8DB1A] to-[#8E51FF1A] shadow-2xl border border-white/10 rounded-xl">
+        <div className="bg-linear-to-br from-[#00B8DB1A] to-[#8E51FF1A] shadow-2xl border border-white/10 rounded-xl">
 
-          {/* Header */}
           <div className="flex justify-between items-center p-4 border-b border-white/10">
             <div className="flex items-center gap-3">
-              {/* <img src={Bell} className="w-5 h-5" /> */}
+              <img src={Bell} className="w-5 h-5" />
               <h2
                 className={`${FONTSIZE[18]}`}
                 style={{ fontWeight: WEIGHT.seven }}
@@ -68,12 +68,11 @@ const NotificationPopup: React.FC<Props> = ({ open, setOpen }) => {
               </span>
             </div>
 
-            <button onClick={() => setOpen(false)}>
+            <button className="cursor-pointer" onClick={() => setOpen(false)}>
               <X size={20} />
             </button>
           </div>
 
-          {/* Description */}
           <p
             className="px-4 py-2 text-xs"
             style={{ color: COLORS.secoundy_gray }}
@@ -81,7 +80,6 @@ const NotificationPopup: React.FC<Props> = ({ open, setOpen }) => {
             Stay updated with your latest activities
           </p>
 
-          {/* Notification List */}
           <div className="divide-y divide-white/10">
             {notificationData.map((item, index) => (
               <div
@@ -89,7 +87,7 @@ const NotificationPopup: React.FC<Props> = ({ open, setOpen }) => {
                 className="p-4 hover:bg-white/5 cursor-pointer flex justify-between"
               >
                 <div className="flex gap-3">
-                  {/* <img src={item.icon} className="w-5 h-5 mt-1" /> */}
+                  <img src={item.icon} className="w-5 h-5 mt-1" />
 
                   <div>
                     <p className="text-sm font-semibold">
@@ -120,14 +118,13 @@ const NotificationPopup: React.FC<Props> = ({ open, setOpen }) => {
             ))}
           </div>
 
-          {/* Footer Button */}
           <div className="p-4">
             <button
               onClick={() => {
                 navigate("/notification");
                 setOpen(false);
               }}
-              className="w-full bg-gradient-to-r from-[#00B8DB] to-[#8E51FF] py-3 rounded-xl font-medium shadow-lg hover:opacity-90 transition"
+              className="w-full bg-linear-to-r from-[#00B8DB] to-[#8E51FF] py-3 rounded-xl font-medium shadow-lg hover:opacity-90 transition cursor-pointer"
             >
               View All Notifications →
             </button>

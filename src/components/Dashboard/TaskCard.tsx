@@ -5,9 +5,11 @@ import person from "../../assets/Dashboard/person.png";
 import tick from "../../assets/Dashboard/tick.png";
 import clock from "../../assets/Dashboard/clock.png";
 import { FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function TaskCard({ task }: { task: Task }) {
   const isCritical = task.priority === "Critical";
+ const navigate = useNavigate();
 
   return (
     <div
@@ -126,7 +128,8 @@ export default function TaskCard({ task }: { task: Task }) {
           {task.onTime ? "On Time" : "⚠ Delayed"}
         </div>
 
-        <button className="px-4 py-2 bg-[#FFFFFF1A] text-[#FFFFFF] hover:bg-white/20 transition rounded-lg text-sm cursor-pointer">
+        <button onClick={() => navigate("/emergencyalerts")}
+         className="px-4 py-2 bg-[#FFFFFF1A] text-[#FFFFFF] hover:bg-white/20 transition rounded-lg text-sm cursor-pointer">
           View Details →
         </button>
       </div>

@@ -6,7 +6,7 @@ import CompactTask from "../../components/Dashboard/CompactTask";
 import WorkerCard from "../../components/Dashboard/WorkerCard";
 import AvailableWorkerCard from "../../components/Dashboard/AvailableWorkerCard";
 import TodaySummary from "../../components/Dashboard/TodaySummary";
-import tools from "../../assets/Dashboard/tools.png";
+import tools from "../../assets/sidebar/logo.png";
 import alert from "../../assets/Dashboard/alarm.png";
 import notes from "../../assets/Dashboard/notes.png";
 import active from "../../assets/Dashboard/active.png";
@@ -15,8 +15,9 @@ import clock from "../../assets/Dashboard/clock.png";
 import graph from "../../assets/Dashboard/graph.png";
 import green from "../../assets/Dashboard/green.png";
 import white from "../../assets/Dashboard/White.png";
-import { FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
+import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
 import { useNavigate } from "react-router-dom";
+
 
 export type Worker = {
   currentTask: ReactNode;
@@ -209,12 +210,11 @@ export default function MaintenanceDashboard() {
     0;
 
   return (
-    <div className="text-white p-4 sm:p-6 md:p-8 space-y-8">
+    <div className="space-y-8" style={{ color: COLORS.primary_white }}>
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 lg:gap-8">
         <div className="text-center lg:text-left">
           <h1
-            style={FONTWEIGHT[700]}
-            className={`text-2xl sm:text-3xl lg:text-4xl font-bold flex items-center justify-center lg:justify-start ${FONTSIZE[36]}`}
+            className={`text-2xl sm:text-3xl lg:text-4xl font-bold flex items-center justify-center lg:justify-start ${FONTSIZE[36]} ${FONTWEIGHT[700]}`}
           >
             <img
               src={tools}

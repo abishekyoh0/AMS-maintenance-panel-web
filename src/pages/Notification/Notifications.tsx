@@ -211,7 +211,7 @@ const Notification: React.FC = () => {
             </div>
           </div>
 
-          <button className="bg-green-500 hover:bg-green-600 transition px-4 py-2 rounded-full text-sm font-semibold shadow-lg shadow-green-500/20">
+          <button className="bg-green-500 hover:bg-green-600 transition px-4 py-2 rounded-full text-sm font-semibold shadow-lg shadow-green-500/20 cursor-pointer">
             Mark All Read
           </button>
         </div>
@@ -230,7 +230,7 @@ const Notification: React.FC = () => {
                 <button
                   key={filter}
                   onClick={() => setActiveFilter(filter)}
-                  className={`px-4 py-2 rounded-full text-sm transition-all
+                  className={`px-4 py-2 rounded-full text-sm transition-all cursor-pointer
       ${activeFilter === filter
                       ? "bg-blue-600 text-white shadow-lg shadow-blue-500/30"
                       : "bg-white/5 text-gray-300 hover:bg-white/10"
@@ -268,14 +268,14 @@ const Notification: React.FC = () => {
                   </p>
 
                   <div className={`flex flex-wrap gap-2 mt-2 sm:mt-3 sm:text-xs ${FONTSIZE[12]}`}>
-                    <span style={{ background: COLORS.time, color: COLORS.primary_black }}
+                    <span style={{ color: COLORS.secoundy_gray }}
                       className="px-2 sm:px-3 py-1 rounded-md flex items-center gap-1">
                       <img src={Clock} className="w-3 h-3 sm:w-4 sm:h-4" />
                       {a.time}
                     </span>
 
                     {a.location && (
-                      <span style={{ background: COLORS.time, color: COLORS.grey }}
+                      <span style={{ color: COLORS.grey }}
                         className="px-2 sm:px-3 py-1 rounded-md">
                         {a.location}
                       </span>
@@ -313,7 +313,7 @@ const Notification: React.FC = () => {
       </div>
 
       <div className="mt-6 flex justify-center sm:justify-end">
-        <button className={`flex border p-2 rounded-lg items-center gap-2 sm:text-sm ${FONTSIZE[14]}`}
+        <button className={`flex border p-2 rounded-lg items-center gap-2 sm:text-sm cursor-pointer ${FONTSIZE[14]}`}
           style={{ fontWeight: WEIGHT.four }}>
           <img src={CheckCircleIcon} className="w-4 h-4 sm:w-5 sm:h-5" />
           Showing<span style={{ fontWeight: WEIGHT.seven }}>12</span> of <span style={{ fontWeight: WEIGHT.seven }}>24</span>notifications
