@@ -3,12 +3,13 @@ import { Mainlayout } from "../layout/Mainlayout";
 import ProtectedRoute from "./ProtectedRoute";
 import Dashboard from "../pages/Dashboard/MaintenanceDashboard";
 import Complaints from "../pages/Complaints/Complaints";
-import EmergencyAlerts from "../pages/EmergencyAlerts/EmergencyAlerts";
+import  EmergencyAlerts  from "../pages/EmergencyAlerts/EmergencyAlerts"; 
 import Guide from "../pages/Guide/Guide";
 import Notifications from "../pages/Notification/Notifications";
 import NotFound from "../components/Shared/NotFound";
 import { PublicRoute } from "./PublicRoute";
 import { SignIn } from "../pages/Auth/Signin";
+import NotificationDetails from "../components/notification/NotificationDetails";
 
 export default function AppRoutes() {
   return (
@@ -34,6 +35,8 @@ export default function AppRoutes() {
           <Route path="/emergencyalerts" element={<EmergencyAlerts />} />
           <Route path="/guide" element={<Guide />} />
           <Route path="/notification" element={<Notifications />} />
+                  <Route path="/details" element={<NotificationDetails />} />
+
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
