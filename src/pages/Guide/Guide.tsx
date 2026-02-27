@@ -170,45 +170,49 @@ export default function Guide() {
         style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}
       >
         <img src={guide} alt="Guide" className="w-10 h-10" />
-        Service and Provider Directory
+        Service Provider Directory
       </h1>
 
       <p
         className={`text-xs sm:text-sm mb-5 ${FONTSIZE[16]}`}
         style={{ fontWeight: WEIGHT.four, color: COLORS.grey }}
       >
-        Complete entry and exit tracking for residents in the apartment
+        Contact information and profiles of all maintenance staff
       </p>
 
       <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <StatCard
-          title="Residents"
-          value={142}
+          title="Total Providers"
+          value={14}
           icon={persons}
+          textColor="#51A2FF"
           gradientColors={["#2B7FFF33", "#00B8DB33"]}
           borderColor="#51A2FF4D"
         />
 
         <StatCard
-          title="Visitors"
-          value={23}
+          title="Currently Available"
+          value={9}
           icon={tick}
+          textColor="#05DF72"
           gradientColors={["#00C95033", "#00BC7D33"]}
           borderColor="#05DF724D"
         />
 
         <StatCard
-          title="Staff"
-          value={18}
+          title="Currently Working"
+          value={3}
+          textColor="#FF8904"
           icon={work}
           gradientColors={["#FF690033", "#FB2C3633"]}
           borderColor="#FF89044D"
         />
 
         <StatCard
-          title="Rating"
-          value={4.9}
+          title="Average Rating"
+          value={4.7}
           icon={star}
+          textColor="#C27AFF"
           gradientColors={["#AD46FF33", "#F6339A33"]}
           borderColor="#C27AFF4D"
         />

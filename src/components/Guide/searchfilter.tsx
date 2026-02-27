@@ -14,6 +14,7 @@ type Props = {
   onFilterChange: (search: string, category: string) => void;
 };
 
+
 const categories = [
   { name: "All Services", image: book },
   { name: "Plumbing", image: plumbing },
@@ -56,11 +57,7 @@ const SearchFilter = ({ onFilterChange }: Props) => {
         placeholder="Search by name, phone, email, or employee ID..."
         value={searchTerm}
         onChange={(e) => handleSearchChange(e.target.value)}
-        className={`w-full mb-6 px-4 py-3 rounded-xl 
-                   bg-[#FFFFFF1A] border border-[#FFFFFF33] 
-                   text-white placeholder-gray-400 
-                   focus:outline-none focus:ring-2 
-                   focus:ring-cyan-500 ${FONTSIZE[16]}`}
+        className={`w-full mb-6 px-4 py-3 rounded-xl bg-[#FFFFFF1A] border border-[#FFFFFF33] text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 ${FONTSIZE[16]}`}
         style={{ fontWeight: WEIGHT.four }}
       />
 
@@ -79,15 +76,7 @@ const SearchFilter = ({ onFilterChange }: Props) => {
           <button
             key={index}
             onClick={() => handleCategoryClick(cat.name)}
-            className={`h-24 rounded-[14px] border
-    ${
-      selectedCategory === cat.name
-        ? "bg-cyan-500 border-cyan-500 text-white"
-        : "bg-[#FFFFFF0D] border-[#FFFFFF33] text-[#FFFFFF66] hover:bg-cyan-500 hover:text-white"
-    }
-    flex flex-col items-center justify-center cursor-pointer
-    gap-2
-    transition duration-200 ${FONTSIZE[12]}`}
+            className={`h-24 rounded-[14px] border ${selectedCategory === cat.name ? "bg-[#00B8DB] border-[#FFFFFF33] text-white" : "bg-[#FFFFFF0D] border-[#FFFFFF33] text-[#FFFFFF66] hover:bg-[#00B8DB] hover:text-white"} flex flex-col items-center justify-center cursor-pointer gap-2 transition duration-200 ${FONTSIZE[12]}`}
             style={{ fontWeight: WEIGHT.seven }}
           >
             <img

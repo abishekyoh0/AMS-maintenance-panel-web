@@ -63,7 +63,7 @@ export default function AddWorkerModal({ open, onClose }: Props) {
   };
 
   return (
-   <div className="fixed inset-0 bg-white/50 z-50 flex items-center justify-center p-4 sm:p-6 overflow-auto">
+   <div className="fixed inset-0 bg-[#000000CC] z-50 flex items-center justify-center p-4 sm:p-6 overflow-auto">
   <div className="w-full max-w-lg sm:max-w-2xl md:max-w-3xl bg-[#111827] text-white rounded-2xl shadow-xl max-h-[95vh] overflow-y-auto p-4 sm:p-6 md:p-8">
 
     <h2

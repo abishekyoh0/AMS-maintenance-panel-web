@@ -109,10 +109,14 @@ const data: WorkOrder[] = [
   },
 ];
 
-const tabs = ["All", "Open", "Assigned", "In Progress", "Resolved"];
 
-const WorkOrdersTable = () => {
-  const [activeTab, setActiveTab] = useState("All");
+const tabs = ["All", "Open", "Assigned", "In Progress", "Resolved"];
+type Props = {
+  onUpdateClick: (order: WorkOrder) => void;
+};
+
+const WorkOrdersTable = ({ onUpdateClick }: Props) =>{
+    const [activeTab, setActiveTab] = useState("All");
 
   const filteredData = data.filter((item) => {
     if (activeTab === "All") return true;
@@ -272,6 +276,7 @@ const getProgressColor = (progress: number) => {
 
   return "bg-gradient-to-r from-[#34C759] to-[#30D158]"; 
 };
+
 
 
 
@@ -497,9 +502,14 @@ const getProgressColor = (progress: number) => {
 
 
                   <td className="p-4  whitespace-nowrap">
-                    <button className={`cursor-pointer text-[#00D3F2] hover:text-[#00D3F2] text-sm font-medium ${FONTSIZE[14]}`} style={{fontWeight:WEIGHT.four}}>
-                      Update →
-                    </button>
+                   
+                    <button
+  onClick={() => onUpdateClick(item)}
+  className={`cursor-pointer text-[#00D3F2] hover:text-white text-sm ${FONTSIZE[14]}`}
+  style={{ fontWeight: WEIGHT.four }}
+>
+  Update →
+</button>
                   </td>
                 </tr>
               ))}

@@ -12,11 +12,18 @@ import general from "../../assets/guide/general.png";
 import WorkOrdersTable from "../../components/Complaints/workordertable";
 import { useState } from "react";
 import AddWorkerModal from "../../components/Complaints/addworkermodal";
-import EditBuildingModal from "../../components/Complaints/updatecomplaints";
+import CategoryGuide from "../../components/Complaints/categoryguide";
+import UpdateComplaintModal from "../../components/Complaints/updatecomplaints";
+
 
 export default function Complaints() {
 
   const [openModal, setOpenModal] = useState(false);
+  const [openUnits, setOpenUnits] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState<any>(null);
+const [openUpdateModal, setOpenUpdateModal] = useState(false);
+
+
 
   return (
     <div>
@@ -62,6 +69,7 @@ export default function Complaints() {
     </button>
 
     <button
+    onClick={() => setOpenUnits(true)}
       className={`
         flex items-center justify-center gap-2
         w-full sm:w-40.5 h-11 sm:h-12
@@ -142,12 +150,26 @@ export default function Complaints() {
 
       </div>
       <div className="mt-6">
-      <WorkOrdersTable />
+      <WorkOrdersTable
+  onUpdateClick={(order: any) => {
+    setSelectedOrder(order);
+    setOpenUpdateModal(true);
+  }}
+/>
+<UpdateComplaintModal
+  open={openUpdateModal}
+  onClose={() => setOpenUpdateModal(false)}
+  workOrder={selectedOrder}
+/>
     </div>
     <AddWorkerModal
   open={openModal}
   onClose={() => setOpenModal(false)}
 />
+<CategoryGuide open={openUnits} onClose={() => setOpenUnits(false)} />
+
+  
+  
 
 
 

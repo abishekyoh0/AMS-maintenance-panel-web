@@ -51,11 +51,22 @@ const DASHBOARD_STATS = [
   },
 ];
 
-const ACTIVE_ALERTS = [
+const ACTIVE_ALERTS: Array<{
+  title: string;
+  id: string;
+  priority: string;
+  color: string;
+  icon: string;
+  location: string;
+  time: string;
+  assigned: string;
+  description: string;
+  note: string;
+}> = [
   {
     title: "Water Leakage",
     id: "#A2035",
-    priority: "Medium",
+    priority: "high",
     color: COLORS.orange,
     icon: Water,
     location: "Block A - Common Area",
@@ -153,6 +164,50 @@ const InfoCard = ({ icon, label, value }: any) => (
   </div>
 );
 
+type Priority = "High" | "Medium" | "Low";
+
+const normalizePriority = (value: string): Priority => {
+  const p = value?.toLowerCase();
+
+  if (p === "high") return "High";
+  if (p === "medium") return "Medium";
+  if (p === "low") return "Low";
+
+  return "Low";
+};
+
+const activePriorityStyle = (priority: "Low" | "Medium" | "High") => {
+  switch (priority) {
+    case "High":
+      return {
+        cardBorder: "#FF64674D",
+        cardBg: "from-[#FB2C361A] to-[#FF69001A]",
+        badgeBg: "#FB2C3633",
+        badgeText: "#FF6467",
+        badgeBorder: "#FF64674D",
+      };
+
+    case "Medium":
+      return {
+        cardBorder: "#FF89044D",
+        cardBg: "from-[#FF69001A] to-[#FF89041A]",
+        badgeBg: "#FF690033",
+        badgeText: "#FF8904",
+        badgeBorder: "#FF89044D",
+      };
+
+    case "Low":
+    default:
+      return {
+        cardBorder: "#00C9504D",
+        cardBg: "from-[#00C9501A] to-[#00BC7D1A]",
+        badgeBg: "#00C95033",
+        badgeText: "#00C950",
+        badgeBorder: "#00C9504D",
+      };
+  }
+};
+
 const EmergencyDashboard: React.FC = () => {
   return (
     <div className="space-y-6" style={{ color: COLORS.primary_white }}>
@@ -188,61 +243,71 @@ const EmergencyDashboard: React.FC = () => {
         ))}
       </div>
 
-      {ACTIVE_ALERTS.map((alert, i) => (
-        <div
-          key={i}
-          className="rounded-2xl border border-[#FF64674D] bg-linear-to-r from-[#FB2C361A] to-[#FF69001A] p-4 space-y-5"
-        >
-          <div className="flex justify-between flex-wrap">
-            <div className="flex gap-3 items-center">
-              <img src={alert.icon} />
-              <div>
-                <p className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>
-                  {alert.title}
-                </p>
-                <p style={{ color: COLORS.secoundy_gray }}>
-                  Alert ID: {alert.id}
-                </p>
+      {ACTIVE_ALERTS.map((alert, i) => {
+        const normalizedPriority = normalizePriority(alert.priority);
+        const priority = activePriorityStyle(normalizedPriority);
+
+        return (
+          <div
+            key={i}
+            className="rounded-2xl border border-[#FF64674D] bg-linear-to-r from-[#FB2C361A] to-[#FF69001A] p-4 space-y-5"
+          >
+            <div className="flex justify-between flex-wrap items-center">
+              <div className="flex gap-3 items-center">
+                <img src={alert.icon} />
+                <div>
+                  <p className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>
+                    {alert.title}
+                  </p>
+                  <p style={{ color: COLORS.secoundy_gray }}>
+                    Alert ID: {alert.id}
+                  </p>
+                </div>
+              </div>
+
+              <div
+                className={`flex items-center px-4 py-2 rounded-full ${FONTSIZE[14]} ${FONTWEIGHT[700]}`}
+                style={{
+                  background: priority.badgeBg,
+                  color: priority.badgeText,
+                  border: `1px solid ${priority.badgeBorder}`,
+                }}
+              >
+                {alert.priority} Priority
               </div>
             </div>
 
+            <div className="grid md:grid-cols-3 gap-3">
+              <InfoCard
+                icon={Locatio}
+                label="Location"
+                value={alert.location}
+              />
+              <InfoCard icon={Clock} label="Time" value={alert.time} />
+              <InfoCard icon={worker} label="Assigned" value={alert.assigned} />
+            </div>
+
             <div
-              className={`flex items-center px-3 rounded-full ${FONTSIZE[14]} ${FONTWEIGHT[700]}`}
-              style={{
-                backgroundColor: COLORS.orange + "33",
-                color: COLORS.orange,
-              }}
+              className={`bg-[#FFFFFF0D] p-3 rounded-lg ${FONTSIZE[16]} ${FONTWEIGHT[400]}`}
             >
-              {alert.priority} Priority
+              <p
+                className={`mb-2 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
+                style={{ color: COLORS.secoundy_gray }}
+              >
+                Alert Details:
+              </p>
+              {alert.description}
+            </div>
+
+            <div
+              className={`bg-[#F0B1001A] border border-[#FDC7004D] p-3 rounded-lg ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
+              style={{ color: COLORS.orange }}
+            >
+              ⚠️ {alert.note}
             </div>
           </div>
-
-          <div className="grid md:grid-cols-3 gap-3">
-            <InfoCard icon={Locatio} label="Location" value={alert.location} />
-            <InfoCard icon={Clock} label="Time" value={alert.time} />
-            <InfoCard icon={worker} label="Assigned" value={alert.assigned} />
-          </div>
-
-          <div
-            className={`bg-[#FFFFFF0D] p-3 rounded-lg ${FONTSIZE[16]} ${FONTWEIGHT[400]}`}
-          >
-            <p
-              className={`mb-2 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
-              style={{ color: COLORS.secoundy_gray }}
-            >
-              Alert Details:
-            </p>
-            {alert.description}
-          </div>
-
-          <div
-            className={`bg-[#F0B1001A] border border-[#FDC7004D] p-3 rounded-lg ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
-            style={{ color: COLORS.orange }}
-          >
-            ⚠️ {alert.note}
-          </div>
-        </div>
-      ))}
+        );
+      })}
 
       <div
         className="rounded-2xl p-5"
@@ -339,9 +404,9 @@ const EmergencyDashboard: React.FC = () => {
       </div>
 
       <div className="rounded-2xl border border-[#00D3F24D] bg-linear-to-r from-[#00B8DB1A] to-[#2B7FFF1A] p-5">
-        <div className="flex gap-3 items-center">
-          <img src={Iicon} className="w-1 h-6 mb-2" />
-          <h2 className={`${FONTSIZE[24]} ${FONTWEIGHT[700]} mb-4`}>
+        <div className="flex gap-3 items-center mb-4 ">
+          <img src={Iicon} className="w-1 h-6 " />
+          <h2 className={`${FONTSIZE[24]} ${FONTWEIGHT[700]} `}>
             Maintenance Emergency Response Guidelines
           </h2>
         </div>
