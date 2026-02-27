@@ -36,7 +36,7 @@ export const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
       )}
 
       <aside
-        className={`fixed md:static z-50 top-0 h-full left-0 w-70 p-4 bg-[#000000] transform transition-transform duration-300 overflow-x-auto no-scrollbar ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}
+        className={`fixed md:static z-50 top-0 h-full left-0 w-60 p-4 bg-[#000000] transform transition-transform duration-300 overflow-x-auto no-scrollbar ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}
         style={{ color: COLORS.primary_white }}
       >
         <div className="flex flex-col items-center gap-2 mb-4 px-5 py-9 rounded-xl bg-linear-to-r from-[#FF6900] to-[#CA3500] ">
@@ -78,7 +78,7 @@ export const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
             <div className="mt-7 ">
               <button
                 onClick={() => setShowLogoutModal(true)}
-                className="w-full flex items-center gap-3 px-4 py-2 rounded-lg items-center bg-[linear-gradient(90deg,rgba(0,184,219,0.2)_0%,rgba(142,81,255,0.2)_100%)] text-white  transition cursor-pointer"
+                className="w-full flex items-center gap-3 px-4 py-2 rounded-lg bg-[linear-gradient(90deg,rgba(0,184,219,0.2)_0%,rgba(142,81,255,0.2)_100%)] text-white  transition cursor-pointer"
               >
                 <img src={logoutIcon} alt="Logout" className="w-5 h-5" />
                 <div className="flex justify-center  w-full">

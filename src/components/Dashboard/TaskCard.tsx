@@ -1,11 +1,11 @@
 import type { Task } from "../../pages/Dashboard/MaintenanceDashboard";
 import alert from "../../assets/Dashboard/alarm.png";
-import location from "../../assets/Dashboard/Location.png";
+import location from "../../assets/emergencyAlerts/location.png";
 import person from "../../assets/Dashboard/person.png";
 import tick from "../../assets/Dashboard/tick.png";
 import clock from "../../assets/Dashboard/clock.png";
 import { FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function TaskCard({ task }: { task: Task }) {
   const isCritical = task.priority === "Critical";
@@ -79,7 +79,7 @@ export default function TaskCard({ task }: { task: Task }) {
 
         {task.flat && (
           <div className="md:min-w-55 lg:min-w-0">
-            <Info label="Flat Number" value={task.flat} highlight />
+            <Info label="Flat Number" value={task.flat} highlight valueColor="text-[#00D3F2]"/>
           </div>
         )}
 

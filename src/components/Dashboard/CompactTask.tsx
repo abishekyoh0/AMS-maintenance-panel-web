@@ -1,6 +1,6 @@
 import type { Task } from "../../pages/Dashboard/MaintenanceDashboard";
 import tools from "../../assets/Dashboard/tools.png";
-import location from "../../assets/Dashboard/Location.png";
+import location from "../../assets/emergencyAlerts/location.png";
 import person from "../../assets/Dashboard/person.png";
 import clock from "../../assets/Dashboard/clock.png";
 import { FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";

@@ -216,11 +216,11 @@ export default function MaintenanceDashboard() {
           <h1
             className={`text-2xl sm:text-3xl lg:text-4xl font-bold flex items-center justify-center lg:justify-start ${FONTSIZE[36]} ${FONTWEIGHT[700]}`}
           >
-            <img
+            {/* <img
               src={tools}
               alt="Maintenance"
               className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 mr-3"
-            />
+            /> */}
             Maintenance Control Center
           </h1>
 
@@ -297,24 +297,24 @@ export default function MaintenanceDashboard() {
       <div className="flex flex-col sm:flex-row gap-4">
         <button
           onClick={() => setView("Active")}
-          className={`px-6 py-3 rounded-xl cursor-pointer ${
+          className={`flex items-center gap-2 px-6 py-3 rounded-xl cursor-pointer ${
             view === "Active"
               ? "bg-linear-to-r from-[#FF6900] to-[#E7000B]"
               : "bg-[#FFFFFF0D]"
           }`}
-        >
-          Active Tasks
+        style={{boxShadow: "0px 4px 6px -4px #FF690040,0px 10px 15px -3px #FF690040"}}>
+         <img src={tools} alt="" className="w-5 h-5"/> Active Tasks
         </button>
 
         <button
           onClick={() => setView("Workers")}
-          className={`px-6 py-3 rounded-xl  cursor-pointer ${
+          className={`flex items-center gap-2 px-6 py-3 rounded-xl  cursor-pointer ${
             view === "Workers"
               ? "bg-linear-to-r from-[#2B7FFF] to-[#0092B8]"
               : "bg-[#FFFFFF0D]"
           }`}
         >
-          Worker Status
+         <img src={person} alt="" className="w-5 h-5"/> Worker Status
         </button>
       </div>
 
