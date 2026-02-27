@@ -299,10 +299,10 @@ export default function MaintenanceDashboard() {
           onClick={() => setView("Active")}
           className={`flex items-center gap-2 px-6 py-3 rounded-xl cursor-pointer ${
             view === "Active"
-              ? "bg-linear-to-r from-[#FF6900] to-[#E7000B]"
+              ? "bg-linear-to-r from-[#FF6900] to-[#E7000B] shadow-lg shadow-[#FF690040]"
               : "bg-[#FFFFFF0D]"
           }`}
-        style={{boxShadow: "0px 4px 6px -4px #FF690040,0px 10px 15px -3px #FF690040"}}>
+       >
          <img src={tools} alt="" className="w-5 h-5"/> Active Tasks
         </button>
 
@@ -310,7 +310,7 @@ export default function MaintenanceDashboard() {
           onClick={() => setView("Workers")}
           className={`flex items-center gap-2 px-6 py-3 rounded-xl  cursor-pointer ${
             view === "Workers"
-              ? "bg-linear-to-r from-[#2B7FFF] to-[#0092B8]"
+              ? "bg-linear-to-r from-[#2B7FFF] to-[#0092B8] shadow-lg shadow-[#2B7FFF40]"
               : "bg-[#FFFFFF0D]"
           }`}
         >

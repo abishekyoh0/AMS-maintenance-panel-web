@@ -10,7 +10,7 @@ import Iicon from "../../assets/emergencyAlerts/iicon.png";
 import Wire from "../../assets/emergencyAlerts/wire.png";
 import Thunder from "../../assets/emergencyAlerts/thunder.png";
 import Note from "../../assets/emergencyAlerts/note.png";
-import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
+import { COLORS, FONTSIZE, FONTWEIGHT, WEIGHT } from "../../constent/uiconstent";
 
 type AlertHistory = {
   img?: string;
@@ -66,7 +66,7 @@ const ACTIVE_ALERTS: Array<{
   {
     title: "Water Leakage",
     id: "#A2035",
-    priority: "high",
+    priority: "High",
     color: COLORS.orange,
     icon: Water,
     location: "Block A - Common Area",
@@ -212,31 +212,25 @@ const EmergencyDashboard: React.FC = () => {
   return (
     <div className="space-y-6" style={{ color: COLORS.primary_white }}>
       <div>
-        <h1
-          className={`flex items-center gap-2 ${FONTSIZE[36]} ${FONTWEIGHT[700]}`}
-        >
+        <h1 className={`flex items-center gap-2 ${FONTSIZE[36]}`} 
+        style={{fontWeight: WEIGHT.seven}}>
           <img src={Alert} /> Emergency Alerts
         </h1>
-        <p
-          className={`${FONTSIZE[16]}`}
-          style={{ color: COLORS.secoundy_gray }}
-        >
+        <p className={`${FONTSIZE[16]}`} style={{ color: COLORS.secoundy_gray, fontWeight: WEIGHT.four }}>
           View emergency alerts requiring maintenance attention
         </p>
       </div>
 
       <div className="grid sm:grid-cols-3 gap-4">
         {DASHBOARD_STATS.map((card, i) => (
-          <div
-            key={i}
+          <div key={i}
             className={`rounded-xl p-5 bg-linear-to-r ${card.bg}`}
-            style={{ border: `1px solid ${card.border}` }}
-          >
+            style={{ border: `1px solid ${card.border}` }}>
             <img src={card.icon} />
-            <p className={`${FONTSIZE[30]} ${FONTWEIGHT[700]} my-2`}>
+            <p className={`${FONTSIZE[30]} my-2`} style={{fontWeight: WEIGHT.seven}}>
               {card.count}
             </p>
-            <p className={`${FONTSIZE[14]}`} style={{ color: card.color }}>
+            <p className={`${FONTSIZE[14]}`} style={{ color: card.color, fontWeight: WEIGHT.four }}>
               {card.label}
             </p>
           </div>
@@ -248,15 +242,13 @@ const EmergencyDashboard: React.FC = () => {
         const priority = activePriorityStyle(normalizedPriority);
 
         return (
-          <div
-            key={i}
-            className="rounded-2xl border border-[#FF64674D] bg-linear-to-r from-[#FB2C361A] to-[#FF69001A] p-4 space-y-5"
-          >
+          <div key={i}
+            className="rounded-2xl border border-[#FF64674D] bg-linear-to-r from-[#FB2C361A] to-[#FF69001A] p-4 space-y-5">
             <div className="flex justify-between flex-wrap items-center">
               <div className="flex gap-3 items-center">
                 <img src={alert.icon} />
                 <div>
-                  <p className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>
+                  <p className={`${FONTSIZE[24]}`} style={{fontWeight: WEIGHT.seven}}>
                     {alert.title}
                   </p>
                   <p style={{ color: COLORS.secoundy_gray }}>
@@ -266,63 +258,50 @@ const EmergencyDashboard: React.FC = () => {
               </div>
 
               <div
-                className={`flex items-center px-4 py-2 rounded-full ${FONTSIZE[14]} ${FONTWEIGHT[700]}`}
+                className={`flex items-center px-4 py-2 rounded-full ${FONTSIZE[14]}`}
                 style={{
                   background: priority.badgeBg,
                   color: priority.badgeText,
                   border: `1px solid ${priority.badgeBorder}`,
-                }}
-              >
+                  fontWeight: WEIGHT.seven
+                }} >
                 {alert.priority} Priority
               </div>
             </div>
 
             <div className="grid md:grid-cols-3 gap-3">
-              <InfoCard
-                icon={Locatio}
-                label="Location"
-                value={alert.location}
-              />
+              <InfoCard icon={Locatio} label="Location" value={alert.location} />
               <InfoCard icon={Clock} label="Time" value={alert.time} />
               <InfoCard icon={worker} label="Assigned" value={alert.assigned} />
             </div>
 
-            <div
-              className={`bg-[#FFFFFF0D] p-3 rounded-lg ${FONTSIZE[16]} ${FONTWEIGHT[400]}`}
-            >
-              <p
-                className={`mb-2 ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
-                style={{ color: COLORS.secoundy_gray }}
-              >
+            <div className={`bg-[#FFFFFF0D] p-3 rounded-lg ${FONTSIZE[16]}`} style={{fontWeight: WEIGHT.four}}>
+              <p className={`mb-2 ${FONTSIZE[14]}`} style={{ color: COLORS.secoundy_gray, fontWeight:WEIGHT.four }}>
                 Alert Details:
               </p>
               {alert.description}
             </div>
 
-            <div
-              className={`bg-[#F0B1001A] border border-[#FDC7004D] p-3 rounded-lg ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
-              style={{ color: COLORS.orange }}
-            >
+            <div className={`bg-[#F0B1001A] border border-[#FDC7004D] p-3 rounded-lg ${FONTSIZE[14]}`}
+              style={{ color: COLORS.orange, fontWeight: WEIGHT.four }} >
               ⚠️ {alert.note}
             </div>
           </div>
         );
       })}
 
-      <div
-        className="rounded-2xl p-5"
-        style={{ border: "1px solid #FFFFFF33", background: "#FFFFFF0D" }}
-      >
+      <div className="rounded-2xl p-5"
+        style={{ border: "1px solid #FFFFFF33", background: "#FFFFFF0D" }}>
         <div className="flex gap-2 items-center mb-4">
           <img src={Note} className="w-5 h-5" />
-          <h2 className={`${FONTSIZE[24]} ${FONTWEIGHT[700]}`}>
+          <h2 className={`${FONTSIZE[24]}`} style={{fontWeight: WEIGHT.seven}}>
             Emergency Alert History
           </h2>
         </div>
 
         <div className="w-full overflow-x-auto">
-          <table className="min-w-[950px] w-full">
-            <thead style={{ color: COLORS.secoundy_gray }}>
+          <table className="min-w-238 w-full">
+            <thead className={`${FONTSIZE[12]}`} style={{ color: COLORS.secoundy_gray, fontWeight: WEIGHT.seven }}>
               <tr className="uppercase border-b border-white/10">
                 <th className="text-left py-3">Alert Type</th>
                 <th className="text-left py-3">Priority</th>
@@ -339,59 +318,44 @@ const EmergencyDashboard: React.FC = () => {
                 const s = statusStyle(item.status);
 
                 return (
-                  <tr
-                    key={index}
+                  <tr key={index}
                     className={FONTSIZE[14]}
-                    style={{ borderBottom: "1px solid #ffffff1a" }}
-                  >
+                    style={{ borderBottom: "1px solid #ffffff1a" }}>
                     <td className="py-3 flex items-center gap-3">
                       <img src={item.img} className="w-6 h-6" />
                       <div>
-                        <p className={`${FONTSIZE[16]} ${FONTWEIGHT[700]}`}>
+                        <p className={`${FONTSIZE[16]}`} style={{fontWeight: WEIGHT.seven}}>
                           {item.type}
                         </p>
-                        <p
-                          className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
-                          style={{ color: COLORS.secoundy_gray }}
-                        >
+                        <p className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
+                          style={{ color: COLORS.secoundy_gray }}>
                           {item.code}
                         </p>
                       </div>
                     </td>
                     <td>
-                      <span
-                        className={`px-3 py-2 rounded-2xl ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}
-                        style={{ background: p.bg, color: p.color }}
-                      >
+                      <span className={`px-3 py-2 rounded-2xl ${FONTSIZE[12]}`}
+                        style={{ background: p.bg, color: p.color, fontWeight: WEIGHT.seven }}>
                         {item.priority}
                       </span>
                     </td>
-                    <td
-                      className={`${FONTSIZE[14]} ${FONTWEIGHT[700]}`}
-                      style={{ color: COLORS.blue }}
-                    >
+                    <td className={`${FONTSIZE[14]}`}
+                      style={{ color: COLORS.blue, fontWeight:WEIGHT.seven }}>
                       {item.location}
                     </td>
                     <td>
-                      <p
-                        className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
-                        style={{ color: COLORS.primary_white }}
-                      >
+                      <p className={`${FONTSIZE[14]} ${FONTWEIGHT[400]}`}>
                         {item.date}
                       </p>
-                      <p
-                        className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
-                        style={{ color: COLORS.grey }}
-                      >
+                      <p className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
+                        style={{ color: COLORS.grey }}>
                         {item.time}
                       </p>
                     </td>
                     <td style={{ color: COLORS.smalltext }}>{item.assigned}</td>
                     <td>
-                      <span
-                        className={`px-3 py-2 rounded-2xl ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}
-                        style={{ background: s.bg, color: s.color }}
-                      >
+                      <span className={`px-3 py-2 rounded-2xl ${FONTSIZE[12]} ${FONTWEIGHT[700]}`}
+                        style={{ background: s.bg, color: s.color }}>
                         {item.status}
                       </span>
                     </td>
@@ -405,22 +369,20 @@ const EmergencyDashboard: React.FC = () => {
 
       <div className="rounded-2xl border border-[#00D3F24D] bg-linear-to-r from-[#00B8DB1A] to-[#2B7FFF1A] p-5">
         <div className="flex gap-3 items-center mb-4 ">
-          <img src={Iicon} className="w-1 h-6 " />
-          <h2 className={`${FONTSIZE[24]} ${FONTWEIGHT[700]} `}>
+          <img src={Iicon} className="w-1 h-5 " />
+          <h2 className={`${FONTSIZE[24]}`} style={{fontWeight: WEIGHT.seven}}>
             Maintenance Emergency Response Guidelines
           </h2>
         </div>
         <div className="grid md:grid-cols-2 gap-4">
           {GUIDELINES.map((g, i) => (
             <div key={i} className="bg-[#FFFFFF0D] p-4 rounded-xl">
-              <h3 className={`${FONTSIZE[16]} ${FONTWEIGHT[700]} mb-2`}>
-                <img src={g.icon} className="w-6 h-5 mb-2" />
+              <h3 className={`${FONTSIZE[16]}mb-2`} style={{fontWeight: WEIGHT.seven}}>
+                <img src={g.icon} className="w-6 h-6 mb-2" />
                 {g.title}
               </h3>
-              <ul
-                className={`list-disc list-inside ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
-                style={{ color: COLORS.secoundy_gray }}
-              >
+              <ul className={`list-disc list-inside ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
+                style={{ color: COLORS.secoundy_gray }} >
                 {g.points.map((p, idx) => (
                   <li key={idx}>{p}</li>
                 ))}

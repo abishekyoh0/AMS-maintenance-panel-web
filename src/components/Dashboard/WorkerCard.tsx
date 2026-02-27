@@ -1,7 +1,7 @@
 import type { Worker } from "../../pages/Dashboard/MaintenanceDashboard";
 import person from "../../assets/Dashboard/person.png";
 import green from "../../assets/Dashboard/green.png";
-import location from "../../assets/Dashboard/Location.png";
+import location from "../../assets/emergencyAlerts/location.png";
 import { FONTSIZE } from "../../constent/uiconstent";
 import { FONTWEIGHT } from "../../constent/uiconstent";
 
@@ -63,7 +63,7 @@ export default function WorkerCard({ worker }: { worker: Worker }) {
           style={FONTWEIGHT[400]}
           className={`flex items-center gap-1 ${FONTSIZE[14]}`}
         >
-          <img src={location} alt="Location" className="w-6 h-6" />
+          <img src={location} alt="Location" className="w-4 h-4" />
           {worker.location}
         </span>
 
