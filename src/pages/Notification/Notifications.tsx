@@ -564,8 +564,6 @@ const Notification: React.FC = () => {
                 <button onClick={() => navigate("/details", { state: n })}>
                   <img src={ViewIcon} className="w-5 h-5 cursor-pointer" />
                 </button>
-
-
                 <button
                   className="hover:text-red-400 cursor-pointer"
                   onClick={() => {
