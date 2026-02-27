@@ -3,73 +3,56 @@ import tools from "../../assets/Dashboard/tools.png";
 import location from "../../assets/emergencyAlerts/location.png";
 import person from "../../assets/Dashboard/person.png";
 import clock from "../../assets/Dashboard/clock.png";
-import { FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
+import { COLORS, FONTSIZE, FONTWEIGHT, WEIGHT } from "../../constent/uiconstent";
 
 export default function CompactTask({ task }: { task: Task }) {
   return (
     <div className="relative bg-[#FFFFFF0D] border border-[#FFFFFF33] rounded-2xl px-6 py-5 flex justify-between items-center hover:border-white/20 transition duration-300">
       <div className="flex items-start gap-4">
-        <div className="text-gray-400 text-xl mt-1">
+        <div className="mt-1">
           <img src={tools} alt="Task" className="w-6 h-6 object-contain" />
         </div>
 
         <div>
           <h4
-            style={FONTWEIGHT[700]}
-            className={`font-semibold text-[#FFFFFF] text-lg ${FONTSIZE[18]}`}
-          >
+            style={{fontWeight: WEIGHT.seven}}
+            className={`${FONTSIZE[18]}`}>
             {task.title}
           </h4>
 
-          <div className="flex items-center gap-3 text-sm text-[#99A1AF] mt-2 flex-wrap">
-            <div
-              style={FONTWEIGHT[400]}
-              className={`flex items-center gap-1 ${FONTSIZE[14]}`}
-            >
+          <div className={`flex items-center gap-3 mt-2 flex-wrap ${FONTSIZE[14]}`} style={{fontWeight: WEIGHT.four, color: COLORS.secoundy_gray}}>
+            <div className={`flex items-center gap-1 `}>
               <img
                 src={location}
                 alt="location"
                 className="w-4 h-4 object-contain"
               />
-              <span className="text-[#99A1AF]">{task.location}</span>
+              <span>{task.location}</span>
             </div>
-
             <span>•</span>
 
-            <div
-              style={FONTWEIGHT[400]}
-              className={`flex items-center gap-1 ${FONTSIZE[14]}`}
-            >
+            <div className={`flex items-center gap-1 `}>
               <img
                 src={person}
                 alt="worker"
                 className="w-4 h-4 object-contain"
               />
-              <span
-                style={FONTWEIGHT[400]}
-                className={`text-[#99A1AF] ${FONTSIZE[14]}`}
-              >
+              <span>
                 {task.worker} ({task.workerRole})
               </span>
             </div>
-
             <span>•</span>
 
-            <div
-              style={FONTWEIGHT[400]}
-              className={`flex items-center gap-1 ${FONTSIZE[14]}`}
-            >
+            <div className={`flex items-center gap-1`}>
               <img src={clock} alt="time" className="w-4 h-4 object-contain" />
-              <span className="text-[#99A1AF]">{task.timeElapsed}</span>
+              <span>{task.timeElapsed}</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div
-        style={FONTWEIGHT[700]}
-        className={`flex items-center gap-3 ${FONTSIZE[12]}`}
-      >
+      <div style={{fontWeight: WEIGHT.seven}}
+        className={`flex items-center gap-3 ${FONTSIZE[12]}`}>
         <PriorityBadge priority={task.priority} />
         <StatusBadge status={mapStatus(task.status)} />
       </div>
@@ -100,10 +83,8 @@ function PriorityBadge({ priority }: { priority: Task["priority"] }) {
   };
 
   return (
-    <span
-      style={FONTWEIGHT[400]}
-      className={`px-3 py-1 rounded-full text-xs font-medium ${FONTSIZE[12]} ${styles[priority]}`}
-    >
+    <span style={{fontWeight: WEIGHT.seven}}
+      className={`px-3 py-1 rounded-full ${FONTSIZE[12]} ${styles[priority]}`}>
       {priority}
     </span>
   );
@@ -125,10 +106,8 @@ function StatusBadge({
   };
 
   return (
-    <span
-      style={FONTWEIGHT[700]}
-      className={`px-3 py-1 rounded-full text-xs font-medium ${FONTSIZE[12]} ${styles[status]}`}
-    >
+    <span style={{fontWeight: WEIGHT.seven}}
+      className={`px-3 py-1 rounded-full ${FONTSIZE[12]} ${styles[status]}`}>
       {status}
     </span>
   );
