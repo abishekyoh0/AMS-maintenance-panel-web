@@ -161,6 +161,7 @@ function Info({
           <img src={icon} alt={label} className="w-4 h-4 object-contain" />
         )}
 
+
         <p
           style={{fontWeight: WEIGHT.seven}}
           className={`
