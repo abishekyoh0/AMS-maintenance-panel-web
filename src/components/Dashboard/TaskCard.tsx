@@ -150,8 +150,7 @@ function Info({
   valueColor?: string;
 }) {
   return (
-
-    
+  
     <div className="bg-[#FFFFFF1A] rounded-xl p-4">
       <p style={{color: COLORS.secoundy_gray, fontWeight: WEIGHT.four}} className={`${FONTSIZE[12]}`}>
         {label}
