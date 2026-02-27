@@ -3,7 +3,7 @@ import tools from "../../assets/Dashboard/tools.png";
 import location from "../../assets/emergencyAlerts/location.png";
 import person from "../../assets/Dashboard/person.png";
 import clock from "../../assets/Dashboard/clock.png";
-import { COLORS, FONTSIZE, FONTWEIGHT, WEIGHT } from "../../constent/uiconstent";
+import { COLORS, FONTSIZE, WEIGHT } from "../../constent/uiconstent";
 
 export default function CompactTask({ task }: { task: Task }) {
   return (
