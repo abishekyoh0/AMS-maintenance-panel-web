@@ -1,11 +1,11 @@
 import type { Task } from "../../pages/Dashboard/MaintenanceDashboard";
 import alert from "../../assets/Dashboard/alarm.png";
-import location from "../../assets/Dashboard/Location.png";
+import location from "../../assets/emergencyAlerts/location.png";
 import person from "../../assets/Dashboard/person.png";
 import tick from "../../assets/Dashboard/tick.png";
 import clock from "../../assets/Dashboard/clock.png";
-import { FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
-import { Navigate, useNavigate } from "react-router-dom";
+import { COLORS, FONTSIZE, FONTWEIGHT, WEIGHT } from "../../constent/uiconstent";
+import { useNavigate } from "react-router-dom";
 
 export default function TaskCard({ task }: { task: Task }) {
   const isCritical = task.priority === "Critical";
@@ -27,7 +27,7 @@ export default function TaskCard({ task }: { task: Task }) {
         <div>
           <h3
             style={FONTWEIGHT[700]}
-            className={`text-xl font-semibold ${FONTSIZE[24]} text-[#FFFFFF]`}
+            className={`${FONTSIZE[24]}`}
           >
             <img
               src={alert}
@@ -38,8 +38,8 @@ export default function TaskCard({ task }: { task: Task }) {
           </h3>
 
           <p
-            style={FONTWEIGHT[400]}
-            className={`text-sm text-[#99A1AF] mt-1 px-8 ${FONTSIZE[14]}`}
+            style={{color: COLORS.secoundy_gray}}
+            className={` mt-1 px-8 ${FONTSIZE[14]}`}
           >
             Task ID: #{task.id}
           </p>
@@ -48,7 +48,7 @@ export default function TaskCard({ task }: { task: Task }) {
         <span
           style={FONTWEIGHT[400]}
           className={`
-            px-4 py-1 rounded-full text-xs font-medium ${FONTSIZE[14]}
+            px-4 py-1 rounded-full ${FONTSIZE[14]}
             ${
               isCritical
                 ? "bg-[#FB2C3633] text-[#FF6467] border border-[#FF646766]"
@@ -73,13 +73,12 @@ export default function TaskCard({ task }: { task: Task }) {
             label="Location"
             value={task.location}
             icon={location}
-            valueColor="text-[#FFFFFF]"
           />
         </div>
 
         {task.flat && (
           <div className="md:min-w-55 lg:min-w-0">
-            <Info label="Flat Number" value={task.flat} highlight />
+            <Info label="Flat Number" value={task.flat} highlight valueColor="text-[#00D3F2]"/>
           </div>
         )}
 
@@ -87,7 +86,6 @@ export default function TaskCard({ task }: { task: Task }) {
           <Info
             label="Category"
             value={task.category}
-            valueColor="text-[#FFFFFF]"
           />
         </div>
 
@@ -101,12 +99,12 @@ export default function TaskCard({ task }: { task: Task }) {
         </div>
       </div>
 
-      <div className="flex justify-between items-center bg-white/5 rounded-xl p-4 border border-white/10">
+      <div className="flex justify-between items-center bg-[#FFFFFF1A] rounded-xl p-4">
         <div>
-          <p className="text-xs text-[#99A1AF]">Assigned Worker</p>
+          <p className={`${FONTSIZE[12]}`} style={{fontWeight: WEIGHT.four, color: COLORS.secoundy_gray}}>Assigned Worker</p>
 
           <div className="mt-1">
-            <p className="font-medium text-[#FFFFFF]">
+            <p className={`${FONTSIZE[16]}`} style={{fontWeight: WEIGHT.seven }}>
               <img
                 src={person}
                 alt="Person"
@@ -117,19 +115,20 @@ export default function TaskCard({ task }: { task: Task }) {
           </div>
         </div>
 
-        <span className="px-4 py-1 rounded-full text-xs bg-[#2B7FFF33] text-[#51A2FF] border border-[#51A2FF4D]">
+        <span className={`px-4 py-1 rounded-full text-xs bg-[#2B7FFF33] text-[#51A2FF] border border-[#51A2FF4D] ${FONTSIZE[14]}`}
+        style={{fontWeight: WEIGHT.seven}}>
           {task.status}
         </span>
       </div>
 
-      <div className="flex justify-between items-center rounded-xl p-4 border border-[#05DF724D] bg-[#00C9501A]">
-        <div className="flex items-center gap-2 text-[#05DF72] text-sm">
+      <div className={`flex justify-between items-center rounded-xl p-4 border-2 border-[#05DF724D] bg-[#00C9501A] ${FONTSIZE[14]}`} style={{fontWeight: WEIGHT.seven}}>
+        <div className={`flex items-center gap-2 text-[#05DF72]`} >
           <img src={tick} alt="On Time" className="w-4 h-4 object-contain" />
           {task.onTime ? "On Time" : "⚠ Delayed"}
         </div>
 
         <button onClick={() => navigate("/emergencyalerts")}
-         className="px-4 py-2 bg-[#FFFFFF1A] text-[#FFFFFF] hover:bg-white/20 transition rounded-lg text-sm cursor-pointer">
+         className="px-4 py-2 bg-[#FFFFFF1A] hover:bg-white/20 transition rounded-lg text-sm cursor-pointer">
           View Details →
         </button>
       </div>
@@ -151,8 +150,9 @@ function Info({
   valueColor?: string;
 }) {
   return (
-    <div className="bg-[#FFFFFF1A] rounded-xl p-4 border border-white/10">
-      <p style={FONTWEIGHT[400]} className={`text-[#99A1AF] ${FONTSIZE[14]}`}>
+  
+    <div className="bg-[#FFFFFF1A] rounded-xl p-4">
+      <p style={{color: COLORS.secoundy_gray, fontWeight: WEIGHT.four}} className={`${FONTSIZE[12]}`}>
         {label}
       </p>
 
@@ -161,8 +161,9 @@ function Info({
           <img src={icon} alt={label} className="w-4 h-4 object-contain" />
         )}
 
+
         <p
-          style={FONTWEIGHT[700]}
+          style={{fontWeight: WEIGHT.seven}}
           className={`
             ${FONTSIZE[16]}
             ${highlight ? "text-[#00D3F2]" : ""}

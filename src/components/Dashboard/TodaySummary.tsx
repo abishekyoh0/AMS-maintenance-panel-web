@@ -12,12 +12,13 @@ export default function TodaySummary({
   completed,
   inProgress,
 }: Props) {
+  
   return (
     <div className="bg-linear-to-r from-blue-900/40 to-black border border-blue-500/30 p-6 rounded-2xl space-y-3">
       <h3 className="text-lg font-semibold">
         <img src={graph} alt="Graph" className="w-5 h-5 mr-2 inline-block" />
       </h3>
-<p style={FONTWEIGHT[700]} className={`text-[#FFFFFF] ${FONTSIZE[20]}`}> Today's Summary</p>
+      <p style={FONTWEIGHT[700]} className={`text-[#FFFFFF] ${FONTSIZE[20]}`}> Today's Summary</p>
       <div className="flex justify-between text-sm">
         <span style={FONTWEIGHT[400]} className={`text-[#99A1AF] ${FONTSIZE[14]}`}>Total Tasks</span>
         <span style={FONTWEIGHT[700]} className={`text-[#FFFFFF] ${FONTSIZE[14]}`}>{total}</span>
