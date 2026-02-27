@@ -18,21 +18,21 @@ const notificationData = [
     title: "Visitor Approval Pending",
     desc: "John Doe waiting at Main Gate for Unit A-305",
     time: "5m ago",
-    type: "Visitor",
+    type: "Urgent",
   },
   {
     icon: Parcel,
     title: "Large Delivery Arrived",
     desc: "Furniture delivery for Unit C-108 requires escort",
     time: "20m ago",
-    type: "Delivery",
+    type: "Assigned",
   },
   {
     icon: Car,
     title: "Unregistered Vehicle",
     desc: "Vehicle ABC-1234 registration expired",
     time: "1h ago",
-    type: "Vehicle",
+    type: "Inventory",
   },
 ];
 
