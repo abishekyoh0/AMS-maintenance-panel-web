@@ -19,7 +19,6 @@ export default function Section({ title, icon, children }: Props) {
           style={FONTWEIGHT[700]}
           className={`
             ${FONTSIZE[24]}
-            text-[#FFFFFF]
             tracking-wide
           `}
         >

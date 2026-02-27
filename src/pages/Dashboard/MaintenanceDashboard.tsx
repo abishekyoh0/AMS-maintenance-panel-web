@@ -15,7 +15,7 @@ import clock from "../../assets/Dashboard/clock.png";
 import graph from "../../assets/Dashboard/graph.png";
 import green from "../../assets/Dashboard/green.png";
 import white from "../../assets/Dashboard/White.png";
-import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
+import { COLORS, FONTSIZE, WEIGHT } from "../../constent/uiconstent";
 import { useNavigate } from "react-router-dom";
 
 
@@ -213,9 +213,8 @@ export default function MaintenanceDashboard() {
     <div className="space-y-8" style={{ color: COLORS.primary_white }}>
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 lg:gap-8">
         <div className="text-center lg:text-left">
-          <h1
-            className={`text-2xl sm:text-3xl lg:text-4xl font-bold flex items-center justify-center lg:justify-start ${FONTSIZE[36]} ${FONTWEIGHT[700]}`}
-          >
+          <h1 className={`text-2xl sm:text-3xl lg:text-4xl font-bold flex items-center justify-center lg:justify-start ${FONTSIZE[36]}`}
+            style={{ fontWeight: WEIGHT.seven }}>
             {/* <img
               src={tools}
               alt="Maintenance"
@@ -224,28 +223,22 @@ export default function MaintenanceDashboard() {
             Maintenance Control Center
           </h1>
 
-          <p className="text-[#99A1AF] mt-2 text-sm sm:text-base">
+          <p className={`mt-2 sm:text-base ${FONTSIZE[16]}`} style={{color: COLORS.secoundy_gray}}>
             Real-time task monitoring and worker management
           </p>
         </div>
 
         <div className="flex flex-col sm:flex-row w-full lg:w-auto gap-3">
-          <button
-            className=" w-full sm:w-auto px-6 py-2.5 rounded-xl bg-linear-to-r from-[#FB2C36] to-[#E60076] hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
-            onClick={() => {
-              navigate("/emergencyalerts");
-            }}
-          >
+          <button onClick={() => { navigate("/emergencyalerts") }}
+            className={`w-full sm:w-auto px-6 py-2.5 rounded-xl bg-linear-to-r from-[#FB2C36] to-[#E60076] flex items-center justify-center gap-2 cursor-pointer ${FONTSIZE[16]}`}
+            style={{ fontWeight: WEIGHT.seven, boxShadow: "0px 4px 6px -4px #FB2C3640,0px 10px 15px -3px #FB2C3640" }}>
             <img src={alert} alt="Emergency" className="w-4 h-4" />
             Emergency Alerts
           </button>
 
-          <button
-            className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-linear-to-r from-[#FF6900] to-[#E65C00] hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
-            onClick={() => {
-              navigate("/complaints");
-            }}
-          >
+          <button onClick={() => { navigate("/complaints") }}
+            className={`w-full sm:w-auto px-6 py-2.5 rounded-xl bg-linear-to-r from-[#FF6900] to-[#E65C00] flex items-center justify-center gap-2 cursor-pointer ${FONTSIZE[16]}`}
+            style={{ fontWeight: WEIGHT.seven, boxShadow: "0px 4px 6px -4px #FF690040,0px 10px 15px -3px #FF690040" }}>
             <img src={notes} alt="Complaints" className="w-4 h-4" />
             All Complaints
           </button>
@@ -297,24 +290,22 @@ export default function MaintenanceDashboard() {
       <div className="flex flex-col sm:flex-row gap-4">
         <button
           onClick={() => setView("Active")}
-          className={`flex items-center gap-2 px-6 py-3 rounded-xl cursor-pointer ${
-            view === "Active"
+          className={`flex items-center gap-2 px-6 py-3 rounded-xl cursor-pointer ${view === "Active"
               ? "bg-linear-to-r from-[#FF6900] to-[#E7000B] shadow-lg shadow-[#FF690040]"
               : "bg-[#FFFFFF0D]"
-          }`}
-       >
-         <img src={tools} alt="" className="w-5 h-5"/> Active Tasks
+            }`}
+        style={{fontWeight: WEIGHT.seven}}>
+          <img src={tools} alt="" className="w-5 h-5" /> Active Tasks
         </button>
 
         <button
           onClick={() => setView("Workers")}
-          className={`flex items-center gap-2 px-6 py-3 rounded-xl  cursor-pointer ${
-            view === "Workers"
+          className={`flex items-center gap-2 px-6 py-3 rounded-xl  cursor-pointer ${view === "Workers"
               ? "bg-linear-to-r from-[#2B7FFF] to-[#0092B8] shadow-lg shadow-[#2B7FFF40]"
               : "bg-[#FFFFFF0D]"
-          }`}
-        >
-         <img src={person} alt="" className="w-5 h-5"/> Worker Status
+            }`}
+        style={{fontWeight: WEIGHT.seven}}>
+          <img src={person} alt="" className="w-5 h-5" /> Worker Status
         </button>
       </div>
 

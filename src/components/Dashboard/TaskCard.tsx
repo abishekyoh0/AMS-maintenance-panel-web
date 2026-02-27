@@ -4,7 +4,7 @@ import location from "../../assets/emergencyAlerts/location.png";
 import person from "../../assets/Dashboard/person.png";
 import tick from "../../assets/Dashboard/tick.png";
 import clock from "../../assets/Dashboard/clock.png";
-import { FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
+import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
 import { useNavigate } from "react-router-dom";
 
 export default function TaskCard({ task }: { task: Task }) {
@@ -27,7 +27,7 @@ export default function TaskCard({ task }: { task: Task }) {
         <div>
           <h3
             style={FONTWEIGHT[700]}
-            className={`text-xl font-semibold ${FONTSIZE[24]} text-[#FFFFFF]`}
+            className={`${FONTSIZE[24]}`}
           >
             <img
               src={alert}
@@ -38,8 +38,8 @@ export default function TaskCard({ task }: { task: Task }) {
           </h3>
 
           <p
-            style={FONTWEIGHT[400]}
-            className={`text-sm text-[#99A1AF] mt-1 px-8 ${FONTSIZE[14]}`}
+            style={{color: COLORS.secoundy_gray}}
+            className={` mt-1 px-8 ${FONTSIZE[14]}`}
           >
             Task ID: #{task.id}
           </p>
@@ -48,7 +48,7 @@ export default function TaskCard({ task }: { task: Task }) {
         <span
           style={FONTWEIGHT[400]}
           className={`
-            px-4 py-1 rounded-full text-xs font-medium ${FONTSIZE[14]}
+            px-4 py-1 rounded-full ${FONTSIZE[14]}
             ${
               isCritical
                 ? "bg-[#FB2C3633] text-[#FF6467] border border-[#FF646766]"
@@ -73,7 +73,6 @@ export default function TaskCard({ task }: { task: Task }) {
             label="Location"
             value={task.location}
             icon={location}
-            valueColor="text-[#FFFFFF]"
           />
         </div>
 
@@ -87,7 +86,6 @@ export default function TaskCard({ task }: { task: Task }) {
           <Info
             label="Category"
             value={task.category}
-            valueColor="text-[#FFFFFF]"
           />
         </div>
 
@@ -106,7 +104,7 @@ export default function TaskCard({ task }: { task: Task }) {
           <p className="text-xs text-[#99A1AF]">Assigned Worker</p>
 
           <div className="mt-1">
-            <p className="font-medium text-[#FFFFFF]">
+            <p className="font-medium">
               <img
                 src={person}
                 alt="Person"

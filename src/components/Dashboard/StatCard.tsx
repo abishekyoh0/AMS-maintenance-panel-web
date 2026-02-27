@@ -1,4 +1,4 @@
-import { FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
+import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
 
 interface Props {
   icon: string;
@@ -42,21 +42,21 @@ export default function StatCard({
 
       <h2
         style={FONTWEIGHT[700]}
-        className={`text-3xl text-[#FFFFFF] font-bold mb-1 ${FONTSIZE[30]}`}
+        className={`mb-1 ${FONTSIZE[30]}`}
       >
         {value}
       </h2>
 
       <p
         style={FONTWEIGHT[700]}
-        className={`text-sm font-semibold ${FONTSIZE[14]} ${titleColors[variant]}`}
+        className={`${FONTSIZE[14]} ${titleColors[variant]}`}
       >
         {title}
       </p>
 
       <p
-        style={FONTWEIGHT[400]}
-        className={`text-xs text-[#99A1AF] mt-1 ${FONTSIZE[12]}`}
+        style={{color: COLORS.secoundy_gray}}
+        className={`mt-1 ${FONTSIZE[12]}`}
       >
         {subtitle}
       </p>

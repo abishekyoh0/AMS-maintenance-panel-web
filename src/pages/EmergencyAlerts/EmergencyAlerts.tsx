@@ -382,7 +382,7 @@ const EmergencyDashboard: React.FC = () => {
                 {g.title}
               </h3>
               <ul className={`list-disc list-inside ${FONTSIZE[14]} ${FONTWEIGHT[400]}`}
-                style={{ color: COLORS.secoundy_gray }} >
+                style={{ color: COLORS.secoundy_gray }}>
                 {g.points.map((p, idx) => (
                   <li key={idx}>{p}</li>
                 ))}
