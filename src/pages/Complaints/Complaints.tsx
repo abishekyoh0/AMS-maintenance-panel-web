@@ -11,7 +11,8 @@ import hvac from "../../assets/guide/hvac.png";
 import general from "../../assets/guide/general.png";
 import WorkOrdersTable from "../../components/Complaints/workordertable";
 import { useState } from "react";
-import AddWorkerModal from "../../components/Complaints/addWorkerModal";
+import AddWorkerModal from "../../components/Complaints/addworkermodal";
+import EditBuildingModal from "../../components/Complaints/updatecomplaints";
 
 export default function Complaints() {
 
@@ -147,6 +148,7 @@ export default function Complaints() {
   open={openModal}
   onClose={() => setOpenModal(false)}
 />
+
 
 
     </div>

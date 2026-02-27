@@ -294,7 +294,7 @@ const getProgressColor = (progress: number) => {
     {tabs.map((tab) => (
       <button
         key={tab}
-        // onClick={() => setActiveTab(tab)}
+        onClick={() => setActiveTab(tab)}
         className={`
           h-9
           px-4
@@ -327,16 +327,16 @@ const getProgressColor = (progress: number) => {
             <thead className="bg-[#FFFFFF1A]  text-xs uppercase "
             >
               <tr className={`${FONTSIZE[12]}`} style={{fontWeight:WEIGHT.seven,color:COLORS.grey}}>
-                <th className="p-4 text-left">ID</th>
-                <th className="p-4 text-left">Title</th>
-                <th className="p-4 text-left">Resident</th>
-                <th className="p-4 text-left">Unit</th>
-                <th className="p-4 text-left">Category</th>
-                <th className="p-4 text-left">Assigned Worker</th>
-                <th className="p-4 text-left">Priority</th>
-                <th className="p-4 text-left">Status</th>
-                <th className="p-4 text-left">Progress</th>
-                <th className="p-4 text-left">Action</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-400  tracking-wider ">ID</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-400  tracking-wider ">Title</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-400  tracking-wider ">Resident</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-400  tracking-wider ">Unit</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-400  tracking-wider ">Category</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-400  tracking-wider ">Assigned Worker</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-400  tracking-wider ">Priority</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-400  tracking-wider ">Status</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-400  tracking-wider ">Progress</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-400  tracking-wider ">Action</th>
               </tr>
             </thead>
 
@@ -346,20 +346,20 @@ const getProgressColor = (progress: number) => {
                   key={item.id}
                   className="border-t border-[#FFFFFF33] hover:bg-white/5 transition"
                 >
-                  <td className={`p-4 text-[#D1D5DC] font-medium ${FONTSIZE[14]}`}
+                  <td className={`p-4  whitespace-nowrap text-[#D1D5DC] font-medium ${FONTSIZE[14]}`}
                   style={{fontWeight:WEIGHT.four}}>#{item.id}</td>
 
-                  <td className={`p-4 text-gray-200 font-medium ${FONTSIZE[14]}`}  style={{fontWeight:WEIGHT.four,color:COLORS.primary_white}}>
+                  <td className={`p-4  whitespace-nowrap text-gray-200 font-medium ${FONTSIZE[14]}`}  style={{fontWeight:WEIGHT.four,color:COLORS.primary_white}}>
                     {item.title}
                   </td>
 
-                  <td className={`p-4 text-[#D1D5DC] ${FONTSIZE[14]}`}  style={{fontWeight:WEIGHT.four}}>{item.resident}</td>
+                  <td className={`p-4  whitespace-nowrap text-[#D1D5DC] ${FONTSIZE[14]}`}  style={{fontWeight:WEIGHT.four}}>{item.resident}</td>
 
-                  <td className={`p-4 text-[#00D3F2] font-semibold ${FONTSIZE[14]}`}  style={{fontWeight:WEIGHT.seven}}>
+                  <td className={`p-4  whitespace-nowrap text-[#00D3F2] font-semibold ${FONTSIZE[14]}`}  style={{fontWeight:WEIGHT.seven}}>
                     {item.unit}
                   </td>
 
-  <td className="p-4">
+  <td className="p-4  whitespace-nowrap">
   {(() => {
     const cat = getCategoryIcon(item.category);
 
@@ -387,7 +387,7 @@ const getProgressColor = (progress: number) => {
 
 
 
-<td className="p-4">
+<td className="p-4  whitespace-nowrap">
   <div className="flex gap-3">
 
     <div className="flex flex-col items-center w-9">
@@ -434,7 +434,7 @@ const getProgressColor = (progress: number) => {
 </td>
 
 
-<td className="p-4">
+<td className="p-4  whitespace-nowrap">
   {(() => {
     const p = getPriorityStyle(item.priority);
 
@@ -456,7 +456,7 @@ const getProgressColor = (progress: number) => {
 
 
 
-                <td className="p-4">
+                <td className="p-4  whitespace-nowrap">
   {(() => {
     const s = getStatusStyle(item.status);
 
@@ -478,7 +478,7 @@ const getProgressColor = (progress: number) => {
 </td>
 
 
-<td className="p-4 min-w-35">
+<td className="p-4 min-w-35  whitespace-nowrap">
   <div className={`flex justify-between text-xs 0 mb-1 ${FONTSIZE[12]}`} style={{fontWeight:WEIGHT.four,color:COLORS.grey}}>
     <span>{item.progress}%</span>
     <span>{item.duration}</span>
@@ -496,7 +496,7 @@ const getProgressColor = (progress: number) => {
 
 
 
-                  <td className="p-4">
+                  <td className="p-4  whitespace-nowrap">
                     <button className={`cursor-pointer text-[#00D3F2] hover:text-[#00D3F2] text-sm font-medium ${FONTSIZE[14]}`} style={{fontWeight:WEIGHT.four}}>
                       Update →
                     </button>
