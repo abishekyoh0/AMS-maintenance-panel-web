@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
+import { FONTSIZE, WEIGHT } from "../../constent/uiconstent";
 
 interface Props {
   title: string;
@@ -16,7 +16,7 @@ export default function Section({ title, icon, children }: Props) {
         )}
 
         <h2
-          style={FONTWEIGHT[700]}
+          style={{fontWeight: WEIGHT.seven}}
           className={`
             ${FONTSIZE[24]}
             tracking-wide

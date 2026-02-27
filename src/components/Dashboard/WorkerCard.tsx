@@ -2,8 +2,7 @@ import type { Worker } from "../../pages/Dashboard/MaintenanceDashboard";
 import person from "../../assets/Dashboard/person.png";
 import green from "../../assets/Dashboard/green.png";
 import location from "../../assets/emergencyAlerts/location.png";
-import { FONTSIZE } from "../../constent/uiconstent";
-import { FONTWEIGHT } from "../../constent/uiconstent";
+import { COLORS, FONTSIZE, WEIGHT } from "../../constent/uiconstent";
 
 export default function WorkerCard({ worker }: { worker: Worker }) {
   return (
@@ -18,59 +17,45 @@ export default function WorkerCard({ worker }: { worker: Worker }) {
             />
           </div>
           <div>
-            <p
-              style={FONTWEIGHT[700]}
-              className={`text-lg text-[#FFFFFF] ${FONTSIZE[18]}`}
-            >
+            <p style={{fontWeight: WEIGHT.seven}}
+              className={`${FONTSIZE[18]}`}>
               {worker.name}
             </p>
 
-            <p
-              style={FONTWEIGHT[400]}
-              className={`text-sm text-[#99A1AF] ${FONTSIZE[14]}`}
-            >
+            <p style={{fontWeight: WEIGHT.four, color: COLORS.secoundy_gray}}
+              className={`${FONTSIZE[14]}`}>
               {worker.role}
             </p>
           </div>
         </div>
 
-        <span
-          style={FONTWEIGHT[700]}
-          className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs bg-[#00C95033] text-[#05DF72] border border-[#05DF724D] ${FONTSIZE[12]}`}
-        >
+        <span style={{fontWeight: WEIGHT.seven}}
+          className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs bg-[#00C95033] text-[#05DF72] border border-[#05DF724D] ${FONTSIZE[12]}`}>
           <img src={green} alt="On Task" className="w-3 h-3 object-contain" />
           On Task
         </span>
       </div>
 
       <div className="bg-white/5 p-4 rounded-xl">
-        <p
-          style={FONTWEIGHT[400]}
-          className={`text-xs text-[#99A1AF] ${FONTSIZE[12]}`}
-        >
+        <p style={{fontWeight: WEIGHT.seven, color: COLORS.secoundy_gray}}
+          className={`${FONTSIZE[12]}`}>
           Current Task
         </p>
-        <p
-          style={FONTWEIGHT[700]}
-          className={`font-medium text-[#FFFFFF] ${FONTSIZE[16]}`}
-        >
+        <p style={{fontWeight: WEIGHT.seven}}
+          className={`${FONTSIZE[16]}`}>
           {worker.currentTask}
         </p>
       </div>
 
-      <div className="flex justify-between text-sm text-[#99A1AF]">
-        <span
-          style={FONTWEIGHT[400]}
-          className={`flex items-center gap-1 ${FONTSIZE[14]}`}
-        >
+      <div className="flex justify-between" style={{color: COLORS.secoundy_gray}}>
+        <span style={{fontWeight: WEIGHT.four}}
+          className={`flex items-center gap-1 ${FONTSIZE[14]}`}>
           <img src={location} alt="Location" className="w-4 h-4" />
           {worker.location}
         </span>
 
-        <span
-          style={FONTWEIGHT[700]}
-          className={`text-[#00D3F2] ${FONTSIZE[14]}`}
-        >
+        <span style={{fontWeight: WEIGHT.seven}}
+          className={`text-[#00D3F2] ${FONTSIZE[14]}`}>
           {worker.tasksToday} tasks today
         </span>
       </div>
