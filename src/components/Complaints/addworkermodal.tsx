@@ -2,7 +2,7 @@ import { useState } from "react";
 import plus from "../../assets/guide/plus.png";
 import { COLORS, FONTSIZE, WEIGHT } from "../../constent/uiconstent";
 import cancel from "../../assets/guide/close.png";
-import { Check } from "lucide-react";
+import { Check, X } from "lucide-react";
 
 type Props = {
   open: boolean;
@@ -63,9 +63,32 @@ export default function AddWorkerModal({ open, onClose }: Props) {
   };
 
   return (
-   <div className="fixed inset-0 bg-[#000000CC] z-50 flex items-center justify-center p-4 sm:p-6 overflow-auto">
-  <div className="w-full max-w-lg sm:max-w-2xl md:max-w-3xl bg-[#111827] text-white rounded-2xl shadow-xl max-h-[95vh] overflow-y-auto p-4 sm:p-6 md:p-8">
-
+  <div className="fixed inset-0 bg-[#000000CC] z-50 flex items-center justify-center p-4 overflow-auto">
+      <div
+        className="relative bg-[#101828F2] border border-[#FFFFFF33]  rounded-3xl w-full max-w-2xl  p-6 sm:p-8
+                   max-h-[90vh] overflow-y-auto"
+      >
+       
+        <button
+          type="button"
+          onClick={onClose}
+          className="
+    absolute top-4 right-4
+    sm:top-6 sm:right-6
+    w-8 h-8 sm:w-10 sm:h-10
+    flex items-center justify-center
+    rounded-full
+    hover:opacity-70
+   
+    text-white font-bold
+    cursor-pointer
+    transition
+    shadow-md
+  "
+          aria-label="Close"
+        >
+          <X />
+        </button>
     <h2
       className={`flex items-center gap-2 mb-6 ${FONTSIZE[30]}`}
       style={{ fontWeight: WEIGHT.seven, color: COLORS.primary_white }}

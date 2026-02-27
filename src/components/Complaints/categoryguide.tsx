@@ -19,8 +19,11 @@ export default function CategoryGuide({ open, onClose }: Props) {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-[#000000CC]  z-50 p-4">
-      <div className="relative w-full max-w-2xl h-[80vh] overflow-y-auto bg-[#101828F2] border border-[#FFFFFF33] rounded-2xl p-6 text-white shadow-xl">
+   <div className="fixed inset-0 bg-[#000000CC] z-50 flex items-center justify-center p-4 overflow-auto">
+      <div
+        className="relative bg-[#101828F2] border border-[#FFFFFF33]  rounded-3xl w-full max-w-2xl  p-6 sm:p-8
+                   max-h-[90vh] overflow-y-auto"
+      >
         <button
           type="button"
           onClick={onClose}
