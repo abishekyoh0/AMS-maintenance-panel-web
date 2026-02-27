@@ -63,20 +63,20 @@ const ACTIVE_ALERTS: Array<{
   description: string;
   note: string;
 }> = [
-  {
-    title: "Water Leakage",
-    id: "#A2035",
-    priority: "High",
-    color: COLORS.orange,
-    icon: Water,
-    location: "Block A - Common Area",
-    time: "08:30 PM",
-    assigned: "Team-2",
-    description:
-      "Water leakage detected on Floor 3. Maintenance team is working on it. Please avoid the area.",
-    note: "This leak requires maintenance team action. Please coordinate with security and admin.",
-  },
-];
+    {
+      title: "Water Leakage",
+      id: "#A2035",
+      priority: "High",
+      color: COLORS.orange,
+      icon: Water,
+      location: "Block A - Common Area",
+      time: "08:30 PM",
+      assigned: "Team-2",
+      description:
+        "Water leakage detected on Floor 3. Maintenance team is working on it. Please avoid the area.",
+      note: "This leak requires maintenance team action. Please coordinate with security and admin.",
+    },
+  ];
 
 const ALERT_HISTORY: AlertHistory[] = [
   {
@@ -212,8 +212,8 @@ const EmergencyDashboard: React.FC = () => {
   return (
     <div className="space-y-6" style={{ color: COLORS.primary_white }}>
       <div>
-        <h1 className={`flex items-center gap-2 ${FONTSIZE[36]}`} 
-        style={{fontWeight: WEIGHT.seven}}>
+        <h1 className={`flex items-center gap-2 ${FONTSIZE[36]}`}
+          style={{ fontWeight: WEIGHT.seven }}>
           <img src={Alert} /> Emergency Alerts
         </h1>
         <p className={`${FONTSIZE[16]}`} style={{ color: COLORS.secoundy_gray, fontWeight: WEIGHT.four }}>
@@ -227,7 +227,7 @@ const EmergencyDashboard: React.FC = () => {
             className={`rounded-xl p-5 bg-linear-to-r ${card.bg}`}
             style={{ border: `1px solid ${card.border}` }}>
             <img src={card.icon} />
-            <p className={`${FONTSIZE[30]} my-2`} style={{fontWeight: WEIGHT.seven}}>
+            <p className={`${FONTSIZE[30]} my-2`} style={{ fontWeight: WEIGHT.seven }}>
               {card.count}
             </p>
             <p className={`${FONTSIZE[14]}`} style={{ color: card.color, fontWeight: WEIGHT.four }}>
@@ -248,7 +248,7 @@ const EmergencyDashboard: React.FC = () => {
               <div className="flex gap-3 items-center">
                 <img src={alert.icon} />
                 <div>
-                  <p className={`${FONTSIZE[24]}`} style={{fontWeight: WEIGHT.seven}}>
+                  <p className={`${FONTSIZE[24]}`} style={{ fontWeight: WEIGHT.seven }}>
                     {alert.title}
                   </p>
                   <p style={{ color: COLORS.secoundy_gray }}>
@@ -275,8 +275,8 @@ const EmergencyDashboard: React.FC = () => {
               <InfoCard icon={worker} label="Assigned" value={alert.assigned} />
             </div>
 
-            <div className={`bg-[#FFFFFF0D] p-3 rounded-lg ${FONTSIZE[16]}`} style={{fontWeight: WEIGHT.four}}>
-              <p className={`mb-2 ${FONTSIZE[14]}`} style={{ color: COLORS.secoundy_gray, fontWeight:WEIGHT.four }}>
+            <div className={`bg-[#FFFFFF0D] p-3 rounded-lg ${FONTSIZE[16]}`} style={{ fontWeight: WEIGHT.four }}>
+              <p className={`mb-2 ${FONTSIZE[14]}`} style={{ color: COLORS.secoundy_gray, fontWeight: WEIGHT.four }}>
                 Alert Details:
               </p>
               {alert.description}
@@ -292,13 +292,15 @@ const EmergencyDashboard: React.FC = () => {
 
       <div className="rounded-2xl p-5"
         style={{ border: "1px solid #FFFFFF33", background: "#FFFFFF0D" }}>
-        <div className="flex gap-2 items-center mb-4">
+        <div className="flex gap-2 items-center">
           <img src={Note} className="w-5 h-5" />
-          <h2 className={`${FONTSIZE[24]}`} style={{fontWeight: WEIGHT.seven}}>
+          <h2 className={`${FONTSIZE[24]}`} style={{ fontWeight: WEIGHT.seven }}>
             Emergency Alert History
           </h2>
         </div>
-
+        <p className={`${FONTSIZE[14]}`} style={{ fontWeight: WEIGHT.four, color: COLORS.secoundy_gray}}>
+          All emergency alerts related to maintenance</p>
+          
         <div className="w-full overflow-x-auto">
           <table className="min-w-238 w-full">
             <thead className={`${FONTSIZE[12]}`} style={{ color: COLORS.secoundy_gray, fontWeight: WEIGHT.seven }}>
@@ -324,7 +326,7 @@ const EmergencyDashboard: React.FC = () => {
                     <td className="py-3 flex items-center gap-3">
                       <img src={item.img} className="w-6 h-6" />
                       <div>
-                        <p className={`${FONTSIZE[16]}`} style={{fontWeight: WEIGHT.seven}}>
+                        <p className={`${FONTSIZE[16]}`} style={{ fontWeight: WEIGHT.seven }}>
                           {item.type}
                         </p>
                         <p className={`${FONTSIZE[12]} ${FONTWEIGHT[400]}`}
@@ -340,7 +342,7 @@ const EmergencyDashboard: React.FC = () => {
                       </span>
                     </td>
                     <td className={`${FONTSIZE[14]}`}
-                      style={{ color: COLORS.blue, fontWeight:WEIGHT.seven }}>
+                      style={{ color: COLORS.blue, fontWeight: WEIGHT.seven }}>
                       {item.location}
                     </td>
                     <td>
@@ -370,14 +372,14 @@ const EmergencyDashboard: React.FC = () => {
       <div className="rounded-2xl border border-[#00D3F24D] bg-linear-to-r from-[#00B8DB1A] to-[#2B7FFF1A] p-5">
         <div className="flex gap-3 items-center mb-4 ">
           <img src={Iicon} className="w-1 h-5 " />
-          <h2 className={`${FONTSIZE[24]}`} style={{fontWeight: WEIGHT.seven}}>
+          <h2 className={`${FONTSIZE[24]}`} style={{ fontWeight: WEIGHT.seven }}>
             Maintenance Emergency Response Guidelines
           </h2>
         </div>
         <div className="grid md:grid-cols-2 gap-4">
           {GUIDELINES.map((g, i) => (
             <div key={i} className="bg-[#FFFFFF0D] p-4 rounded-xl">
-              <h3 className={`${FONTSIZE[16]}mb-2`} style={{fontWeight: WEIGHT.seven}}>
+              <h3 className={`${FONTSIZE[16]}mb-2`} style={{ fontWeight: WEIGHT.seven }}>
                 <img src={g.icon} className="w-6 h-6 mb-2" />
                 {g.title}
               </h3>

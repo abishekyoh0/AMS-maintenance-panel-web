@@ -4,7 +4,7 @@ import location from "../../assets/emergencyAlerts/location.png";
 import person from "../../assets/Dashboard/person.png";
 import tick from "../../assets/Dashboard/tick.png";
 import clock from "../../assets/Dashboard/clock.png";
-import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
+import { COLORS, FONTSIZE, FONTWEIGHT, WEIGHT } from "../../constent/uiconstent";
 import { useNavigate } from "react-router-dom";
 
 export default function TaskCard({ task }: { task: Task }) {
@@ -99,12 +99,12 @@ export default function TaskCard({ task }: { task: Task }) {
         </div>
       </div>
 
-      <div className="flex justify-between items-center bg-white/5 rounded-xl p-4 border border-white/10">
+      <div className="flex justify-between items-center bg-[#FFFFFF1A] rounded-xl p-4">
         <div>
-          <p className="text-xs text-[#99A1AF]">Assigned Worker</p>
+          <p className={`${FONTSIZE[12]}`} style={{fontWeight: WEIGHT.four, color: COLORS.secoundy_gray}}>Assigned Worker</p>
 
           <div className="mt-1">
-            <p className="font-medium">
+            <p className={`${FONTSIZE[16]}`} style={{fontWeight: WEIGHT.seven }}>
               <img
                 src={person}
                 alt="Person"
@@ -115,19 +115,20 @@ export default function TaskCard({ task }: { task: Task }) {
           </div>
         </div>
 
-        <span className="px-4 py-1 rounded-full text-xs bg-[#2B7FFF33] text-[#51A2FF] border border-[#51A2FF4D]">
+        <span className={`px-4 py-1 rounded-full text-xs bg-[#2B7FFF33] text-[#51A2FF] border border-[#51A2FF4D] ${FONTSIZE[14]}`}
+        style={{fontWeight: WEIGHT.seven}}>
           {task.status}
         </span>
       </div>
 
-      <div className="flex justify-between items-center rounded-xl p-4 border border-[#05DF724D] bg-[#00C9501A]">
-        <div className="flex items-center gap-2 text-[#05DF72] text-sm">
+      <div className={`flex justify-between items-center rounded-xl p-4 border-2 border-[#05DF724D] bg-[#00C9501A] ${FONTSIZE[14]}`} style={{fontWeight: WEIGHT.seven}}>
+        <div className={`flex items-center gap-2 text-[#05DF72]`} >
           <img src={tick} alt="On Time" className="w-4 h-4 object-contain" />
           {task.onTime ? "On Time" : "⚠ Delayed"}
         </div>
 
         <button onClick={() => navigate("/emergencyalerts")}
-         className="px-4 py-2 bg-[#FFFFFF1A] text-[#FFFFFF] hover:bg-white/20 transition rounded-lg text-sm cursor-pointer">
+         className="px-4 py-2 bg-[#FFFFFF1A] hover:bg-white/20 transition rounded-lg text-sm cursor-pointer">
           View Details →
         </button>
       </div>
@@ -149,8 +150,8 @@ function Info({
   valueColor?: string;
 }) {
   return (
-    <div className="bg-[#FFFFFF1A] rounded-xl p-4 border border-white/10">
-      <p style={FONTWEIGHT[400]} className={`text-[#99A1AF] ${FONTSIZE[14]}`}>
+    <div className="bg-[#FFFFFF1A] rounded-xl p-4">
+      <p style={{color: COLORS.secoundy_gray, fontWeight: WEIGHT.four}} className={`${FONTSIZE[12]}`}>
         {label}
       </p>
 
@@ -160,7 +161,7 @@ function Info({
         )}
 
         <p
-          style={FONTWEIGHT[700]}
+          style={{fontWeight: WEIGHT.seven}}
           className={`
             ${FONTSIZE[16]}
             ${highlight ? "text-[#00D3F2]" : ""}
