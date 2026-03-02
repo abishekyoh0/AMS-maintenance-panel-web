@@ -27,9 +27,10 @@ import { COLORS, FONTSIZE, FONTWEIGHT } from "../../constent/uiconstent";
 import {
   Bell,
   CheckCircle,
-  AlertTriangle,
   Search,
   X,
+  Clock3,
+  CircleAlert,
 } from "lucide-react";
 
 
@@ -52,7 +53,7 @@ interface NotificationItem {
 const initialData: NotificationItem[] = [
   {
     id: 1,
-    title: "URGENT: Elevator Malfunction - Tower B",
+    title: "URGENT: Elevator Malfunction",
     desc: "Elevator stuck on 12th floor with passengers. Immediate assistance required.",
     time: "2 minutes ago",
     code: "WO-1567",
@@ -397,18 +398,18 @@ const Notification: React.FC = () => {
 
             <div className="flex gap-3 mt-4 flex-wrap">
 
-              <span className="flex items-center gap-2 bg-blue-500/20 text-blue-400 px-4 py-2 rounded-full text-xs font-medium">
-                <Bell size={14} />
+              <span className="flex items-center gap-2 bg-blue-500/20 text-blue-400 px-5 py-3 rounded-full text-xs font-medium">
+                <Bell size={16} />
                 {total} Total
               </span>
 
               <span className="flex items-center gap-2 bg-orange-500/20 text-orange-400 px-4 py-2 rounded-full text-xs font-medium">
-                <CheckCircle size={14} />
+                <CircleAlert  size={16} color="#FF8904" />
                 {unreadCount} Unread
               </span>
 
               <span className="flex items-center gap-2 bg-red-500/20 text-red-400 px-4 py-2 rounded-full text-xs font-medium">
-                <AlertTriangle size={14} />
+                <Clock3 size={16} color="#FF6467" />
                 {actionCount} Need Action
               </span>
 
@@ -430,155 +431,171 @@ const Notification: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 mb-6">
+      <div className="bg-white/5 backdrop-blur-md border border-white/10 
+rounded-2xl p-4 mb-6">
 
-        <div className="flex flex-col lg:flex-row items-center gap-4">
+  <div className="flex flex-col md:flex-col lg:flex-row gap-4">
 
-          <div className="relative w-full lg:w-1/3">
-            <Search
-              size={16}
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-            />
+    <div className="relative w-full lg:w-1/3">
+      <Search
+        size={16}
+        className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+      />
 
+      <input
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder="Search notifications..."
+        className="w-full bg-white/5 border border-white/10 
+        rounded-full py-2.5 pl-10 pr-4 text-sm 
+        focus:outline-none focus:ring-2 focus:ring-blue-500 
+        placeholder:text-gray-400"
+      />
+    </div>
+
+    <div className="
+      flex gap-3  w-full lg:w-auto overflow-x-auto lg:overflow-visible scrollbar-hide pb-1
+    ">
+      {filters.map((item) => (
+        <button
+          key={item.label}
+          onClick={() => setActiveFilter(item.label)}
+          className={`shrink-0 flex items-center gap-2 
+          px-4 py-2 rounded-lg cursor-pointer text-sm 
+          transition-all duration-200 whitespace-nowrap
+          
+          ${activeFilter === item.label
+              ? "bg-blue-600 text-white shadow-lg shadow-blue-500/40"
+              : "bg-white/5 text-gray-300 border border-white/10 hover:bg-white/10"
+            }`}
+        >
+          <img
+            src={item.icon}
+            alt={item.label}
+            className={`w-4 h-4 object-contain 
+            ${activeFilter === item.label
+                ? "brightness-0 invert"
+                : "opacity-70"
+              }`}
+          />
+          {item.label}
+        </button>
+      ))}
+    </div>
+
+  </div>
+</div>
+
+
+
+      <div className="space-y-4 px-3 sm:px-4 md:px-6">
+  {filteredData.map((n) => (
+    <div
+      key={n.id}
+      className={`rounded-xl border border-l-4 p-3 sm:p-4 transition-all duration-300
+      ${n.read
+          ? `${borderGlow(n.priority)} bg-white/5`
+          : "bg-white/2 border-white/10"
+        }`}
+    >
+      <div className="flex flex-col md:flex-row md:justify-between gap-4">
+
+        <div className="flex gap-3 sm:gap-4">
+
+          <div className="relative mt-1">
             <input
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search notifications..."
-              className="w-full bg-white/5 border border-white/10 rounded-full py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-gray-400"
+              type="checkbox"
+              id={`select-${n.id}`}
+              checked={selectedIds.includes(n.id)}
+              onChange={() => toggleSelect(n.id)}
+              className="peer sr-only"
+            />
+            <label
+              htmlFor={`select-${n.id}`}
+              className="flex h-5 w-5 sm:h-6 sm:w-6 cursor-pointer items-center justify-center 
+              rounded border border-blue-400 bg-white/5 transition-all 
+              peer-checked:bg-blue-500/20 peer-checked:border-blue-500"
+            >
+              <svg
+                className={`h-3 w-3 text-blue-400 transition-opacity 
+                ${selectedIds.includes(n.id) ? "opacity-100" : "opacity-0"}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={3}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            </label>
+          </div>
+
+          <div className="flex items-center justify-center 
+            w-8 h-8 sm:w-10 sm:h-10 rounded-xl 
+            border border-white/10 bg-white/5">
+            <img
+              src={n.image}
+              className="w-4 h-4 sm:w-5 sm:h-5 object-contain"
             />
           </div>
 
-          <div className="flex flex-wrap gap-3 w-full   lg:w-auto">
+          <div className="flex-1 min-w-0">
+            <h2 className="font-semibold text-sm sm:text-base truncate">
+              {n.title}
+            </h2>
 
-            {filters.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => setActiveFilter(item.label)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg cursor-pointer text-sm transition-all duration-200
-      ${activeFilter === item.label
-                    ? "bg-blue-600 text-white shadow-lg shadow-blue-500/40"
-                    : "bg-white/5 text-gray-300 border border-white/10 hover:bg-white/10"
-                  }`}
-              >
-                <img
-                  src={item.icon}
-                  alt={item.label}
-                  className={`w-4 h-4 object-contain mb-1 ${activeFilter === item.label ? "brightness-0 invert" : "opacity-70"
-                    }`}
-                />
-                {item.label}
-              </button>
-            ))}
+            <p className="text-xs sm:text-sm text-gray-400 mt-1 break-words">
+              {n.desc}
+            </p>
 
-          </div>
+            <div className="flex gap-2 mt-3 text-xs flex-wrap items-center overflow-x-auto scrollbar-hide">
+              
+              <span className="flex items-center gap-1 text-gray-400 whitespace-nowrap">
+                <img src={Clock} className="w-3 h-3" />
+                {n.time}
+              </span>
 
-        </div>
-      </div>
+              <span className="text-gray-400 rounded-lg px-2 py-1 
+                bg-[#FFFFFF0D] border border-white/10 whitespace-nowrap">
+                {n.code}
+              </span>
 
+              <span className={`px-2 py-1 rounded whitespace-nowrap ${badgeColor(n.priority)}`}>
+                {n.priority}
+              </span>
 
-
-      <div className="space-y-4">
-        {filteredData.map(n => (
-          <div
-            key={n.id}
-            className={`rounded-xl border border-l-4 p-4 transition-all duration-300
-  ${n.read ? `${borderGlow(n.priority)} bg-white/5` : "bg-white/2 border-white/10"}`}
-          >
-            <div className="flex justify-between">
-
-              <div className="flex gap-4">
-
-                <div className="relative mt-1">
-                  <input
-                    type="checkbox"
-                    id={`select-${n.id}`}
-                    checked={selectedIds.includes(n.id)}
-                    onChange={() => toggleSelect(n.id)}
-                    className="peer sr-only"
-                  />
-                  <label
-                    htmlFor={`select-${n.id}`}
-                    className="flex h-5 w-5 cursor-pointer items-center justify-center rounded border border-blue-400 bg-white/5 transition-all 
-    peer-checked:bg-blue-500/20 peer-checked:border-blue-500"
-                  >
-                    <svg
-                      className={`h-3 w-3 text-blue-400 transition-opacity ${selectedIds.includes(n.id) ? "opacity-100" : "opacity-0"
-                        }`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={3}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </label>
-                </div>
-
-                <div className="flex items-center justify-center w-10 h-10 rounded-xl border border-white/10 bg-white/5">
-                  <img
-                    src={n.image}
-                    className="w-5 h-5 object-contain"
-                  />
-                </div>
-
-                <div>
-                  <h2 className="font-semibold">{n.title}</h2>
-
-                  <p className="text-sm text-gray-400 mt-1">
-                    {n.desc}
-                  </p>
-
-                  <div className="flex gap-2 mt-3 text-xs flex-wrap items-center">
-
-                    <span className="flex items-center gap-1 text-gray-400">
-                      <img src={Clock} className="w-3 h-3" />
-                      {n.time}
-                    </span>
-
-                    <span className="text-gray-400 rounded-lg px-2 py-1 bg-[#FFFFFF0D] border border-white/10">
-                      {n.code}
-                    </span>
-
-                    <span className={`px-2 py-1 rounded ${badgeColor(n.priority)}`}>
-                      {n.priority}
-                    </span>
-
-                    {n.actionRequired && (
-                      <span className="px-2 py-1 rounded text-red-500">
-                        ACTION REQUIRED
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex gap-4 items-start">
-
-
-
-                <button onClick={() => navigate("/details", { state: n })}>
-                  <img src={ViewIcon} className="w-5 h-5 cursor-pointer" />
-                </button>
-
-
-                <button
-                  className="hover:text-red-400 cursor-pointer"
-                  onClick={() => {
-                    setDeleteId(n.id);
-                    setShowDelete(true);
-                  }}
-                >
-                  <img src={TrashIcon} alt="" />
-                </button>
-              </div>
+              {n.actionRequired && (
+                <span className="px-2 py-1 rounded text-red-500 whitespace-nowrap">
+                  ACTION REQUIRED
+                </span>
+              )}
             </div>
           </div>
-        ))}
+        </div>
+
+        <div className="flex gap-4 items-center md:items-start justify-end">
+          <button onClick={() => navigate("/details", { state: n })}>
+            <img src={ViewIcon} className="w-4 h-4 sm:w-5 sm:h-5" />
+          </button>
+
+          <button
+            className="hover:text-red-400"
+            onClick={() => {
+              setDeleteId(n.id);
+              setShowDelete(true);
+            }}
+          >
+            <img src={TrashIcon} className="w-4 h-4 sm:w-5 sm:h-5" />
+          </button>
+        </div>
+
       </div>
+    </div>
+  ))}
+</div>
 
       <div className="mt-6 text-sm text-gray-400 text-center">
         Showing {filteredData.length} of {total} notifications
