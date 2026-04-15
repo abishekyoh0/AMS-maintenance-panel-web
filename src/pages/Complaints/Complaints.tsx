@@ -133,7 +133,7 @@ const [openUpdateModal, setOpenUpdateModal] = useState(false);
   title="HVAC"
   value={1}
   icon={hvac}
-  bgColor="#00B8DB1A"
+  bgColor="#00B8DB1A"    
   borderColor="#00D3F24D"
    textColor="#00D3F2"
 />
